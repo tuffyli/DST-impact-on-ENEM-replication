@@ -62,6 +62,11 @@ downloaded directly from their official providers.
 | School Census | 2018-2019 | School enrollment and student-flow measures used to characterize schooling environments. | [INEP School Census microdata](https://www.gov.br/inep/pt-br/acesso-a-informacao/dados-abertos/microdados/censo-escolar) |
 | SAEB | 2017 and 2019 | Lower-stakes comparison outcomes by municipality and grade. | [INEP SAEB microdata](https://www.gov.br/inep/pt-br/acesso-a-informacao/dados-abertos/microdados/saeb) |
 | IBGE municipal shapefile | version used in the analysis | Municipality boundaries used to construct DST-border geometry and distance-to-border measures. | [IBGE Malha Municipal](https://www.ibge.gov.br/geociencias/organizacao-do-territorio/malhas-territoriais/15774-malhas.html) |
+| IBGE Municipal GDP (PIB municipal) | 2013-2019 | Municipality-level economic control (GDP per capita, constructed) | [IBGE data](https://sidra.ibge.gov.br/tabela/5938) |
+| IBGE Municipal Population (2010) | 2013-2019 | Municipality-level population used to compute GDP per capita | [IBGE data](https://sidra.ibge.gov.br/tabela/1378) |
+| IBGE Municipal Population | 2013-2019 | Municipality-level population used to compute GDP per capita | [IBGE data](https://sidra.ibge.gov.br/tabela/6579) |
+| Brazil's Territorial Division (DTB) | 2017 | Annual list of Brazil’s official territorial divisions used to merge INPE weather data | [IBGE Territorial data](https://www.ibge.gov.br/geociencias/organizacao-do-territorio/estrutura-territorial/23701-divisao-territorial-brasileira.html?=&t=downloads) |
+
 
 ## Required Raw-Data Layout
 
@@ -106,11 +111,6 @@ data_raw/
 The data script also expects the following auxiliary files in
 `data/intermediate/revision/`:
 
-```text
-data/intermediate/revision/
-  pib.RDS
-  inpe/DTB_BRASIL_MUNICIPIO.xls
-```
 
 These files are used as municipality-level controls and crosswalk inputs in the
 final analytic database.
