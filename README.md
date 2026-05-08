@@ -61,7 +61,7 @@ downloaded directly from their official providers.
 | INPE SISAM | 2013-2019 | Daily municipality-level weather and atmospheric controls. | [INPE SISAM data server](https://dataserver-coids.inpe.br/queimadas/queimadas/sisam/) |
 | School Census | 2018-2019 | School enrollment and student-flow measures used to characterize schooling environments. | [INEP School Census microdata](https://www.gov.br/inep/pt-br/acesso-a-informacao/dados-abertos/microdados/censo-escolar) |
 | SAEB | 2017 and 2019 | Lower-stakes comparison outcomes by municipality and grade. | [INEP SAEB microdata](https://www.gov.br/inep/pt-br/acesso-a-informacao/dados-abertos/microdados/saeb) |
-| IBGE municipal shapefile | version used in the analysis | Municipality boundaries used to construct DST-border geometry and distance-to-border measures. | [IBGE Malha Municipal](https://www.ibge.gov.br/geociencias/organizacao-do-territorio/malhas-territoriais/15774-malhas.html) |
+| IBGE municipal shapefile | 2017 | Municipality boundaries used to construct DST-border geometry and distance-to-border measures. | [IBGE Malha Municipal](https://www.ibge.gov.br/geociencias/organizacao-do-territorio/malhas-territoriais/15774-malhas.html) |
 | IBGE Municipal GDP (PIB municipal) | 2013-2019 | Municipality-level economic control (GDP per capita, constructed) | [IBGE data](https://sidra.ibge.gov.br/tabela/5938) |
 | IBGE Municipal Population (2010) | 2013-2019 | Municipality-level population used to compute GDP per capita | [IBGE data](https://sidra.ibge.gov.br/tabela/1378) |
 | IBGE Municipal Population | 2013-2019 | Municipality-level population used to compute GDP per capita | [IBGE data](https://sidra.ibge.gov.br/tabela/6579) |
@@ -158,7 +158,7 @@ design.
 The ENEM pipeline harmonizes raw exam files across years. Variable names,
 student characteristics, municipality identifiers, school-sector measures,
 absence indicators, and score outcomes are standardized into a common schema.
-The script constructs the main no-age-filter panel for 2013-2019 and separate
+The script constructs the main no-age-filter panel for 2013-2019 and separates
 2018-2019 all-observation samples for non-standard applicant groups. Item
 responses are joined to ENEM item parameters to create subject-level measures
 and item-difficulty/discrimination measures.
@@ -199,7 +199,7 @@ data/processed/census_students.RDS
 data/processed/base_final.RDS
 ```
 
-Here `<year>` refers to the relevant exam or weather year and `<type>` refers to
+Here `<year>` refers to the relevant exam or weather year, and `<type>` refers to
 the applicant-type samples constructed in the all-observations pipeline.
 
 ## Analysis Outputs
@@ -219,7 +219,7 @@ outputs/stata/
 ```
 
 The regression script produces the main LaTeX tables for the paper, including
-the principal DST estimates, subject-specific results, school-type estimates,
+the principal DST estimates, subject-specific results, and school-type estimates,
 race and sex heterogeneity, parental-education heterogeneity, migration checks,
 border-segment checks, bandwidth tests, balance figures, SAEB placebo estimates,
 and sample-comparison tables. It also exports selected inputs for external Stata
@@ -229,18 +229,18 @@ figures.
 
 The core design compares changes around the DST border before and after the
 2019 abolition of DST. During DST years, municipalities on the DST side of the
-border were exposed to the policy while nearby municipalities on the other side
+border were exposed to the policy, while nearby municipalities on the other side
 were not. In 2019, the national abolition removed this exposure. The code
 therefore combines:
 
 1. local geographic comparisons near the DST border;
-2. before-after variation induced by the abolition of DST;
+2. before-and-after variation induced by the abolition of DST;
 3. controls for distance-to-border polynomials and municipality/test-year
    covariates;
 4. robustness checks over alternative samples, bandwidths, segments, outcomes,
    and comparison assessments.
 
-This structure is designed to isolate the effect of DST exposure on student
+This structure is designed to isolate the effect of DST exposure on students
 achievement while absorbing persistent differences across locations and common
 year shocks.
 
@@ -251,7 +251,7 @@ including `tidyverse`, `data.table`, `sf`, `haven`, `rdrobust`, `fixest`,
 `rddensity`, `readxl`, `stargazer`, `xtable`, `kableExtra`, `ggpattern`,
 `scales`, and supporting string/data-cleaning packages.
 
-Because the raw administrative files are large, runtime and memory requirements
+Because the raw administrative files are large, the runtime and memory requirements
 depend on the local machine. Running the full data pipeline should be treated as
 a long job rather than an interactive command.
 
@@ -262,7 +262,7 @@ therefore portable as long as the raw data are placed in the required
 `data_raw/` layout and the run begins from the repository root or with
 `HV_REPROD_PATH` set correctly.
 
-The code creates generated-data and output folders automatically. It does not
+The code creates the generated-data and output folders automatically. It does not
 download raw administrative data; researchers must download those files from the
 official links above.
 
