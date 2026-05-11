@@ -22,13 +22,34 @@ package, either start R from the repository root or set `HV_REPROD_PATH` to this
 folder.
 
 ```text
-reprod/
+scripts/
   01_master.R
   02_data.R
   03_regression.R
   04_desc_table.R
   05_maps.R
   data_raw/
+    censo_escolar/
+      situacao_aluno/
+    enem/              # ENEM microdata (organized by year)
+      2013/ dados/     # Raw data files
+      2014/
+      2015/
+      ...              # Same structure for other years
+      parameters/
+    gdp_pop/
+    inpe/
+      dados-sisam-2013/
+      dados-sisam-2014/
+      ...               # Same structure for other years
+      DTB_BRASIL_MUNICIPIO.xls
+    saeb/
+      microdados_saeb_2017/
+        dados/
+      microdados_saeb_2019/
+        dados/  
+    shapes/
+      br_municipios_mapa_files/
   data/
     intermediate/
       revision/
