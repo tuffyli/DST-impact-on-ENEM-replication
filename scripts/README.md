@@ -10,7 +10,7 @@ loads libraries, creates output folders, and then sources the scripts in order.
    Builds the analysis datasets from the raw administrative data.
 
 2. `03_regression.R`
-   Runs the main estimates, robustness checks, heterogeneity analyses, balance
+   Runs the main estimates, robustness checks, heterogeneity analyses, and balance
    checks, placebo exercises, and related tables and figures.
 
 3. `04_desc_table.R`
@@ -21,6 +21,13 @@ loads libraries, creates output folders, and then sources the scripts in order.
    Produces the maps used to describe the border, bandwidths, and exam timing
    regions.
 
+5. `06_cmogram.do`
+   Produces the cmogram plots used to describe the discontinuity.
+
+6. `07_bootstrap`
+   Produces the wild bootstrap test with [Webb]{https://onlinelibrary.wiley.com/doi/full/10.1111/caje.12661} weights for robustness testing
+   the clusters utilized in the main regression.
+   
 ## How To Run
 
 Run the project from the repository root:
