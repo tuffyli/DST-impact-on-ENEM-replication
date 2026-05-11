@@ -25,7 +25,7 @@ loads libraries, creates output folders, and then sources the scripts in order.
    Produces the cmogram plots used to describe the discontinuity.
 
 6. `07_bootstrap`
-   Produces the wild bootstrap test with [Webb]{https://onlinelibrary.wiley.com/doi/full/10.1111/caje.12661} weights for robustness testing
+   Produces the wild bootstrap test with [Webb weights](https://onlinelibrary.wiley.com/doi/full/10.1111/caje.12661) for robustness testing
    the clusters utilized in the main regression.
    
 ## How To Run
