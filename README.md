@@ -28,6 +28,8 @@ scripts/
   03_regression.R
   04_desc_table.R
   05_maps.R
+  06_cmogram.do        #Stata Files
+  07_boostrap.do 
   data_raw/
     censo_escolar/
       situacao_aluno/
