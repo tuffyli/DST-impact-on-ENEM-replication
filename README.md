@@ -17,7 +17,7 @@ The SAEB analysis provides a comparable lower-stakes assessment setting.
 
 ## Repository Structure
 
-All paths are defined relative to the reproduction folder. When running the
+All paths are defined relative to the replication folder. When running the
 package, either start R from the repository root or set `HV_REPROD_PATH` to this
 folder.
 
@@ -28,8 +28,9 @@ scripts/
   03_regression.R
   04_desc_table.R
   05_maps.R
-  06_cmogram.do        #Stata Files
-  07_bootstrap.do 
+  06_master.do        #Stata Files
+  07_cmogram.do
+  08_bootstrap.do 
   data_raw/
   data/
     intermediate/
@@ -169,9 +170,9 @@ package.
 | `03_regression.R` | Estimates the main geographic difference-in-discontinuities specifications, robustness checks, heterogeneity, placebo analyses, and balance tests. | LaTeX tables, figures, bandwidth files, and a Stata export. |
 | `04_desc_table.R` | Produces descriptive statistics and distributional summaries. | Descriptive tables and score-distribution figures. |
 | `05_maps.R` | Produces maps of the DST border, municipality distance, analysis bandwidths, and exam start-time regions. | Map figures. |
-| `06_master.do` | Defines paths, environment, and script order. | Organize the execution of the do files|
-| `07_cmogram.do` | Builds the cmogram graphs with the main data frame. | Images stored in `cmogram\` folder |
-| `08_bootstrap.do` | Runs the wild bootstrap test using Webb weights. | Final table output stored in `scores\` |
+| `06_master.do` | Defines Stata paths, globals, and execution order. | Organizes execution of the Stata do-files. |
+| `07_cmogram.do` | Builds the cmogram graphs using the main analysis dataset. | Figures stored in `outputs/cmogram/`. |
+| `08_bootstrap.do` | Runs wild bootstrap inference using Webb weights. | Final robustness tables stored in `outputs/scores/`. |
 
 The intended execution command is:
 
@@ -298,7 +299,7 @@ a long job rather than an interactive command.
 
 ## Reproducibility Notes
 
-The scripts use relative paths rooted in the reproduction folder. The package is
+The scripts use relative paths rooted in the replication folder. The package is
 therefore portable as long as the raw data are placed in the required
 `data_raw/` layout and the run begins from the repository root or with
 `HV_REPROD_PATH` set correctly.
