@@ -32,7 +32,7 @@ for selected graphical and bootstrap procedures.
    Produces the cmogram plots used to describe the discontinuity.
 
 7. `08_bootstrap.do`
-   Produces wild bootstrap inference using Webb weights [Webb weights](https://onlinelibrary.wiley.com/doi/full/10.1111/caje.12661)
+   Produces wild bootstrap inference using [Webb weights](https://onlinelibrary.wiley.com/doi/full/10.1111/caje.12661)
    to assess robustness to the clustering structure used in the main regressions.
    
 ## How To Run
