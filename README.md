@@ -290,7 +290,7 @@ year shocks.
 
 The package is written in R, version `4.5.1`. The master script loads the required libraries,
 including `tidyverse` (2.0.0), `data.table` (1.17.8), `sf` (1.0-21), `haven` (2.5.5), `rdrobust` (3.0.0), `fixest`(0.13.2),
-`rddensity` (2.6), `readxl` (1.4.5), `stargazer` (5.2.3), `xtable` (1.8-4), `kableExtra (1.4.0)`, `ggpattern` (1.3.1),
+`rddensity` (2.6), `readxl` (1.4.5), `stargazer` (5.2.3), `xtable` (1.8-4), `kableExtra` (1.4.0), `ggpattern` (1.3.1),
 `scales` (1.4.0), `purrr` (1.1.0) and supporting string/data-cleaning packages.
 
 Because the raw administrative files are large, the runtime and memory requirements
