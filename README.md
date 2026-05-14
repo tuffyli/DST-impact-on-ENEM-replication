@@ -29,38 +29,18 @@ scripts/
   04_desc_table.R
   05_maps.R
   06_cmogram.do        #Stata Files
-  07_boostrap.do 
+  07_bootstrap.do 
   data_raw/
-    censo_escolar/
-      situacao_aluno/
-    enem/              # ENEM microdata (organized by year)
-      2013/ dados/     # Raw data files
-      2014/
-      2015/
-      ...              # Same structure for other years
-      parameters/
-    gdp_pop/
-    inpe/
-      dados-sisam-2013/
-      dados-sisam-2014/
-      ...               # Same structure for other years
-      DTB_BRASIL_MUNICIPIO.xls
-    saeb/
-      microdados_saeb_2017/
-        dados/
-      microdados_saeb_2019/
-        dados/  
-    shapes/
-      br_municipios_mapa_files/
   data/
     intermediate/
-      revision/
-      no_age_filter/
       all_observations/
-      inpe_municipality/
       bandwidths/
+      inpe_municipality/
+      no_age_filter/
+      revision/
     processed/
   outputs/
+    cmogram/
     controls/
     scores/
     migration/
@@ -98,6 +78,10 @@ expect the original file names shown below.
 
 ```text
 data_raw/
+  censo_escolar/
+    situacao_aluno/
+      ts_censo_basico_situacao_2018.dta
+      ts_censo_basico_situacao_2019.dta
   enem/
     parameters/
       itens_prova_2009.csv
@@ -110,14 +94,15 @@ data_raw/
     2017/dados/MICRODADOS_ENEM_2017.csv
     2018/dados/MICRODADOS_ENEM_2018.csv
     2019/dados/MICRODADOS_ENEM_2019.csv
+  gdp_pop/
+    tabela1378.xls
+    tabela5938.xls
+    tabela6579.xls
   inpe/
     dados_sisam-2013/task_9045.dados_sisam.2013.csv
     ...
     dados_sisam-2019/task_9045.dados_sisam.2019.csv
-  censo_escolar/
-    situacao_aluno/
-      ts_censo_basico_situacao_2018.dta
-      ts_censo_basico_situacao_2019.dta
+    DTB_BRASIL_MUNICIPIO.xls
   saeb/
     microdados_saeb_2017/dados/
       ts_aluno_5ef.dta
@@ -131,9 +116,39 @@ data_raw/
     br_municipios_mapa_files/
 ```
 
-The data script also expects the following auxiliary files in
+The data script also expects the following auxiliary files to be created in
 `data/intermediate/revision/`:
-
+```text
+data/
+  intermediate/
+    all_observations/
+      base_nota_2018_mock.RDS
+      base_nota_2018_older.RDS
+      ...
+    bandwidths/
+      data_bandwidth_2019_2018_residence_all.RData
+    inpe_municipality/
+      inpe_mun_2013.rds
+      inpe_mun_2014.rds
+      ...
+      inpe_mun_2019.rds
+    no_age_filter/
+      aggregated/
+        data_2013_municipality_aggregated_controls.RDS
+        ...
+        data_2019_municipality_aggregated_controls.RDS
+      base_abs_2013.RDS
+      ...
+      enem_notas_2019_v4.RDS
+    revision\
+      line.RDS
+      mun_hv.RDS
+      pib.rds
+  processed/
+    base_final.RDS
+    census_students.RDS
+    saeb_total.RDS
+```
 
 These files are used as municipality-level controls and crosswalk inputs in the
 final analytic database.
