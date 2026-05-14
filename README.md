@@ -169,6 +169,9 @@ package.
 | `03_regression.R` | Estimates the main geographic difference-in-discontinuities specifications, robustness checks, heterogeneity, placebo analyses, and balance tests. | LaTeX tables, figures, bandwidth files, and a Stata export. |
 | `04_desc_table.R` | Produces descriptive statistics and distributional summaries. | Descriptive tables and score-distribution figures. |
 | `05_maps.R` | Produces maps of the DST border, municipality distance, analysis bandwidths, and exam start-time regions. | Map figures. |
+| `06_master.do` | Defines paths, environment, and script order. | Organize the execution of the do files|
+| `07_cmogram.do` | Builds the cmogram graphs with the main data frame. | Images stored in `cmogram\` folder |
+| `08_bootstrap.do` | Runs the wild bootstrap test using Webb weights. | Final table output stored in `scores\` |
 
 The intended execution command is:
 
