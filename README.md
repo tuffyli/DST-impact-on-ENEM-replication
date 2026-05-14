@@ -183,7 +183,7 @@ If running from a different working directory, set:
 
 ```r
 Sys.setenv(HV_REPROD_PATH = "path/to/reprod")
-source(file.path(Sys.getenv("HV_REPROD_PATH"), "01_master.R"))
+source(file.path(Sys.getenv("HV_REPROD_PATH"), "01_master.R")) #HV stands for DST in Portuguese
 ```
 
 ## Data Construction
@@ -214,7 +214,7 @@ and 2019. These data are used to test whether comparable effects appear in a
 lower-stakes assessment, which helps interpret whether the ENEM results reflect
 test-day performance in a high-stakes setting.
 
-The School Census pipeline imports 2018 and 2019 student-flow files and creates
+The School Census pipeline imports the 2018 and 2019 student-flow files and creates
 schooling-environment measures used in descriptive and robustness exercises.
 
 The final construction step merges ENEM, geography, weather, census, and
@@ -241,7 +241,7 @@ data/processed/base_final.RDS
 ```
 
 Here `<year>` refers to the relevant exam or weather year, and `<type>` refers to
-the applicant-type samples constructed in the all-observations pipeline.
+the applicant-type samples were constructed in the all-observations pipeline.
 
 ## Analysis Outputs
 
@@ -287,10 +287,10 @@ year shocks.
 
 ## Software
 
-The package is written in R. The master script loads the required libraries,
-including `tidyverse`, `data.table`, `sf`, `haven`, `rdrobust`, `fixest`,
-`rddensity`, `readxl`, `stargazer`, `xtable`, `kableExtra`, `ggpattern`,
-`scales`, and supporting string/data-cleaning packages.
+The package is written in R, version `4.5.1`. The master script loads the required libraries,
+including `tidyverse` (2.0.0), `data.table` (1.17.8), `sf` (1.0-21), `haven` (2.5.5), `rdrobust` (3.0.0), `fixest`(0.13.2),
+`rddensity` (2.6), `readxl` (1.4.5), `stargazer` (5.2.3), `xtable` (1.8-4), `kableExtra (1.4.0)`, `ggpattern` (1.3.1),
+`scales` (1.4.0), `purrr` (1.1.0) and supporting string/data-cleaning packages.
 
 Because the raw administrative files are large, the runtime and memory requirements
 depend on the local machine. Running the full data pipeline should be treated as
