@@ -22,31 +22,33 @@ package, either start R from the repository root or set `HV_REPROD_PATH` to this
 folder.
 
 ```text
-scripts/
-  01_master.R
-  02_data.R
-  03_regression.R
-  04_desc_table.R
-  05_maps.R
-  06_master.do        #Stata Files
-  07_cmogram.do
-  08_bootstrap.do 
-  data_raw/
-  data/
-    intermediate/
-      all_observations/
-      bandwidths/
-      inpe_municipality/
-      no_age_filter/
-      revision/
-    processed/
-  outputs/
-    cmogram/
-    controls/
-    scores/
-    migration/
-    stata/
+├── README.md                        # Main replication-package documentation
+├── scripts/
+│   ├── 01_master.R                  # Main execution file
+│   ├── 02_data.R                    # Data construction
+│   ├── 03_regression.R              # Main regressions and robustness checks
+│   ├── 04_desc_table.R              # Descriptive statistics and summaries
+│   ├── 05_maps.R                    # Map construction
+│   ├── 06_master.do                 # Stata execution file
+│   ├── 07_cmogram.do                # Cmogram figures
+│   └── 08_bootstrap.do              # Wild bootstrap inference
+├── data_raw/                        # Raw downloaded source files
+├── data/
+│   ├── intermediate/                # Intermediate constructed datasets
+│   │   ├── all_observations/
+│   │   ├── bandwidths/
+│   │   ├── inpe_municipality/
+│   │   ├── no_age_filter/
+│   │   └── revision/
+│   └── processed/                   # Final processed analysis datasets
+└── outputs/
+    ├── cmogram/                     # Cmogram figures
+    ├── controls/                    # Control-variable outputs and maps
+    ├── migration/                   # Migration analysis outputs
+    ├── scores/                      # Main regression outputs
+    └── stata/                       # Stata-generated outputs
 ```
+
 
 The `data_raw/` folder stores downloaded source files. The `data/` folder stores
 intermediate and processed files created by the scripts. Tables, figures, maps,
@@ -78,78 +80,81 @@ Place the raw files under `data_raw/` using the following structure. The scripts
 expect the original file names shown below.
 
 ```text
-data_raw/
-  censo_escolar/
-    situacao_aluno/
-      ts_censo_basico_situacao_2018.dta
-      ts_censo_basico_situacao_2019.dta
-  enem/
-    parameters/
-      itens_prova_2009.csv
-      ...
-      itens_prova_2019.csv
-    2013/dados/MICRODADOS_ENEM_2013.dta
-    2014/dados/MICRODADOS_ENEM_2014.dta
-    2015/dados/MICRODADOS_ENEM_2015.dta
-    2016/dados/microdados_enem_2016.csv
-    2017/dados/MICRODADOS_ENEM_2017.csv
-    2018/dados/MICRODADOS_ENEM_2018.csv
-    2019/dados/MICRODADOS_ENEM_2019.csv
-  gdp_pop/
-    tabela1378.xls
-    tabela5938.xls
-    tabela6579.xls
-  inpe/
-    dados_sisam-2013/task_9045.dados_sisam.2013.csv
-    ...
-    dados_sisam-2019/task_9045.dados_sisam.2019.csv
-    DTB_BRASIL_MUNICIPIO.xls
-  saeb/
-    microdados_saeb_2017/dados/
-      ts_aluno_5ef.dta
-      ts_aluno_9ef.dta
-      ts_aluno_3em_esc.dta
-    microdados_saeb_2019/dados/
-      ts_aluno_5ef.dta
-      ts_aluno_9ef.dta
-      ts_aluno_34em.dta
-  shapes/
-    br_municipios_mapa_files/
+
+├── data_raw/
+│   ├── censo_escolar/
+│   │   └── situacao_aluno/
+│   │       ├── ts_censo_basico_situacao_2018.dta
+│   │       └── ts_censo_basico_situacao_2019.dta
+│   ├── enem/
+│   │   ├── parameters/
+│   │   │   ├── itens_prova_2009.csv
+│   │   │   ├── ...
+│   │   │   └── itens_prova_2019.csv
+│   │   ├── 2013/dados/MICRODADOS_ENEM_2013.dta
+│   │   ├── 2014/dados/MICRODADOS_ENEM_2014.dta
+│   │   ├── 2015/dados/MICRODADOS_ENEM_2015.dta
+│   │   ├── 2016/dados/microdados_enem_2016.csv
+│   │   ├── 2017/dados/MICRODADOS_ENEM_2017.csv
+│   │   ├── 2018/dados/MICRODADOS_ENEM_2018.csv
+│   │   └── 2019/dados/MICRODADOS_ENEM_2019.csv
+│   ├── gdp_pop/
+│   │   ├── tabela1378.xls
+│   │   ├── tabela5938.xls
+│   │   └── tabela6579.xls
+│   ├── inpe/
+│   │   ├── dados_sisam-2013/task_9045.dados_sisam.2013.csv
+│   │   ├── ...
+│   │   ├── dados_sisam-2019/task_9045.dados_sisam.2019.csv
+│   │   └── DTB_BRASIL_MUNICIPIO.xls
+│   ├── saeb/
+│   │   ├── microdados_saeb_2017/dados/
+│   │   │   ├── ts_aluno_5ef.dta
+│   │   │   ├── ts_aluno_9ef.dta
+│   │   │   └── ts_aluno_3em_esc.dta
+│   │   └── microdados_saeb_2019/dados/
+│   │       ├── ts_aluno_5ef.dta
+│   │       ├── ts_aluno_9ef.dta
+│   │       └── ts_aluno_34em.dta
+│   └── shapes/
+│       └── br_municipios_mapa_files/
 ```
 
 The data script also expects the following auxiliary files to be created in
 `data/intermediate/revision/`:
-```text
-data/
-  intermediate/
-    all_observations/
-      base_nota_2018_mock.RDS
-      base_nota_2018_older.RDS
-      ...
-    bandwidths/
-      data_bandwidth_2019_2018_residence_all.RData
-    inpe_municipality/
-      inpe_mun_2013.rds
-      inpe_mun_2014.rds
-      ...
-      inpe_mun_2019.rds
-    no_age_filter/
-      aggregated/
-        data_2013_municipality_aggregated_controls.RDS
-        ...
-        data_2019_municipality_aggregated_controls.RDS
-      base_abs_2013.RDS
-      ...
-      enem_notas_2019_v4.RDS
-    revision\
-      line.RDS
-      mun_hv.RDS
-      pib.rds
-  processed/
-    base_final.RDS
-    census_students.RDS
-    saeb_total.RDS
+
+```text 
+├── data/
+│   ├── intermediate/
+│   │   ├── all_observations/
+│   │   │   ├── base_nota_2018_mock.RDS
+│   │   │   ├── base_nota_2018_older.RDS
+│   │   │   └── ...
+│   │   ├── bandwidths/
+│   │   │   └── data_bandwidth_2019_2018_residence_all.RData
+│   │   ├── inpe_municipality/
+│   │   │   ├── inpe_mun_2013.rds
+│   │   │   ├── inpe_mun_2014.rds
+│   │   │   ├── ...
+│   │   │   └── inpe_mun_2019.rds
+│   │   ├── no_age_filter/
+│   │   │   ├── aggregated/
+│   │   │   │   ├── data_2013_municipality_aggregated_controls.RDS
+│   │   │   │   ├── ...
+│   │   │   │   └── data_2019_municipality_aggregated_controls.RDS
+│   │   │   ├── base_abs_2013.RDS
+│   │   │   ├── ...
+│   │   │   └── enem_notas_2019_v4.RDS
+│   │   └── revision/
+│   │       ├── line.RDS
+│   │       ├── mun_hv.RDS
+│   │       └── pib.rds
+│   └── processed/
+│       ├── base_final.RDS
+│       ├── census_students.RDS
+│       └── saeb_total.RDS
 ```
+
 
 These files are used as municipality-level controls and crosswalk inputs in the
 final analytic database.
@@ -288,14 +293,28 @@ year shocks.
 
 ## Software
 
-The package is written in R, version `4.5.1`. The master script loads the required libraries,
-including `tidyverse` (2.0.0), `data.table` (1.17.8), `sf` (1.0-21), `haven` (2.5.5), `rdrobust` (3.0.0), `fixest`(0.13.2),
-`rddensity` (2.6), `readxl` (1.4.5), `stargazer` (5.2.3), `xtable` (1.8-4), `kableExtra` (1.4.0), `ggpattern` (1.3.1),
-`scales` (1.4.0), `purrr` (1.1.0) and supporting string/data-cleaning packages.
+The replication package was developed and tested using `R 4.5.1`. 
 
-Because the raw administrative files are large, the runtime and memory requirements
-depend on the local machine. Running the full data pipeline should be treated as
-a long job rather than an interactive command.
+### Main R Packages
+
+| Package | Version | Purpose | 
+|:---- | ----: | :----| 
+| `tidyverse` | 2.0.0 | Data manipulation and visualization | 
+| `data.table` | 1.17.8 | Fast large-scale data processing | 
+| `sf` | 1.0-21 | Spatial data and geographic operations | 
+| `haven` | 2.5.5 | Import of Stata datasets | 
+| `rdrobust` | 3.0.0 | Regression-discontinuity estimation | 
+| `fixest` | 0.13.2 | High-dimensional fixed-effects estimation | 
+| `rddensity` | 2.6 | Density tests for RD designs | 
+| `readxl` | 1.4.5 | Excel file import | 
+| `stargazer` | 5.2.3 | Regression-table export | 
+| `xtable` | 1.8-4 | LaTeX table generation | 
+| `kableExtra` | 1.4.0 | Table formatting | 
+| `ggpattern` | 1.3.1 | Patterned ggplot figures | 
+| `scales` | 1.4.0 | Axis and scale formatting | 
+| `purrr` | 1.1.0 | Functional programming utilities |
+
+Additional supporting packages for string handling, data cleaning, and plotting are loaded automatically by `01_master.R`.
 
 ## Reproducibility Notes
 
