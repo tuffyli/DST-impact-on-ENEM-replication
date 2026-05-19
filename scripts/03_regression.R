@@ -5218,6 +5218,141 @@ latex_table <- knitr::kable(
 writeLines(latex_table, file.path(controls_output_path, "tbl_2019_2018_sex_v01.tex"))
 # Original output: Sexo_v1.tex
 
+# ---------------------------------------------------------------------------- #
+### 8.2.5 Lvl Estimation -----
+# ---------------------------------------------------------------------------- #
+
+lvl_result <- list()
+
+for (base_name in c("base_masc", "base_fem")) {
+  message("Starting for: ", base_name)
+  
+  base_a <- get(base_name)
+  
+  for (yano in c(2018, 2019)) {
+    message("Year: ", yano)
+    
+    idx <- base_a$ano == yano
+    
+    #With controls
+    ef <- dummy_cols(base_a$seg_res[idx])
+    ef <- ef %>% select(-1,-2)
+    
+    lvl_result[[paste0(base_name, "_", yano)]] <- rdrobust(
+      y = base_a$media[idx],
+      x = base_a$dist_hv_res[idx],
+      c = 0,
+      p = 1,
+      h = bw_main_r,
+      b = bw_bias_r,
+      cluster = base_a$seg_res[idx],
+      weights = base_a$obs[idx],
+      vce = "hc0",
+      covs = cbind(
+        ef,
+        base_a$lat_res[idx],
+        base_a$lon_res[idx],
+        base_a$tempd1[idx],
+        base_a$escm[idx],
+        base_a$n_ban[idx],
+        base_a$umidd1[idx],
+        base_a$umidd2[idx],
+        base_a$fem[idx],
+        base_a$ppi[idx],
+        base_a$idade[idx],
+        base_a$escp[idx],
+        base_a$pessoa[idx],
+        base_a$n_qua[idx],
+        base_a$n_car[idx],
+        base_a$n_gel[idx],
+        base_a$n_cel[idx],
+        base_a$pc[idx],
+        base_a$internet[idx],
+        base_a$empr_dom[idx],
+        base_a$renda1[idx],
+        base_a$renda110[idx],
+        base_a$renda10[idx],
+        base_a$gdppc[idx],
+        base_a$tempd2[idx],
+        base_a$h13[idx],
+        base_a$h12[idx],
+        base_a$h11[idx]
+      )
+    )
+  }
+  
+  rm(base_a)
+  message("Finished")
+}
+
+# ---------------------------------------------------------------------------- #
+#### 8.2.5.1 Result Table ----
+# ---------------------------------------------------------------------------- #
+
+
+t10cc <- data.frame(
+  coef   = sapply(lvl_result, function(x) x$coef[3]),
+  se     = sapply(lvl_result, function(x) x$se[3]),
+  pv     = sapply(lvl_result, function(x) x$pv[3]),
+  n_left = sapply(lvl_result, function(x) x$N_h[1]),
+  n_rght = sapply(lvl_result, function(x) x$N_h[2]),
+  bw     = sapply(lvl_result, function(x) x$bws[1, 1]),
+  totr   = sapply(lvl_result, function(x) x$N[2]),
+  totl   = sapply(lvl_result, function(x) x$N[1])
+)
+
+
+result <- data.frame(
+  ` ` = c(
+    "Female",
+    " ", " ", " ",
+    "Male",
+    " ", " ", " "
+  ),
+  `(1)` = c(#2018 Fem
+    fmt_est(t10cc$coef[3], t10cc$pv[3]),
+    fmt_se(t10cc$se[3]),
+    paste0("N$_L$ = ", fmt_n(t10cc$n_left[3]),", N$_R$ = ", fmt_n(t10cc$n_rght[3])),
+    paste0("BW = ", fmt_bw(t10cc$bw[3])),
+    #Male
+    fmt_est(t10cc$coef[1], t10cc$pv[1]),
+    fmt_se(t10cc$se[1]),
+    paste0("N$_L$ = ", fmt_n(t10cc$n_left[1]),", N$_R$ = ", fmt_n(t10cc$n_rght[1])),
+    paste0("BW = ", fmt_bw(t10cc$bw[1]))
+  ),
+  `(2)` = c(#2019 Fem
+    fmt_est(t10cc$coef[4], t10cc$pv[4]),
+    fmt_se(t10cc$se[4]),
+    paste0("N$_L$ = ", fmt_n(t10cc$n_left[4]),", N$_R$ = ", fmt_n(t10cc$n_rght[4])),
+    paste0("BW = ", fmt_bw(t10cc$bw[4])),
+    #Male
+    fmt_est(t10cc$coef[2], t10cc$pv[2]),
+    fmt_se(t10cc$se[2]),
+    paste0("N$_L$ = ", fmt_n(t10cc$n_left[2]),", N$_R$ = ", fmt_n(t10cc$n_rght[2])),
+    paste0("BW = ", fmt_bw(t10cc$bw[2]))
+  ),
+  check.names = FALSE,
+  stringsAsFactors = FALSE
+)
+
+# ---------------------------------------------------------------------------- #
+# Latex 
+# ---------------------------------------------------------------------------- #
+
+
+# Creates the LaTeX table
+latex_table <- knitr::kable(
+  result,
+  format = "latex",
+  booktabs = TRUE,
+  escape = F,
+  align = "lcc",
+  linesep = ""
+)
+
+
+writeLines(latex_table, file.path(controls_output_path, "tbl_2019_2018_sex_lvl.tex"))
+
 rm(base_masc, result, base_fem, rlist, t10cc, df, latex_table)
 
 
@@ -6750,7 +6885,7 @@ plot_covs <- ggplot(data = covs_np) +
   scale_x_continuous(
     breaks = c(-1.96, 0, 1.96),
     labels = c("-1.96", "", "1.96"),
-    limits = c(-7, 7)
+    limits = c(-6, 6)
   ) +
   
   geom_vline(
@@ -7534,7 +7669,7 @@ t10cc <- data.frame(
       "2014–2013",
       "2015–2014",
       "2016–2015",
-      "2017–2016",
+      "2017-2016\n(omitted)",
       "2018–2017",
       "2019–2018"
     ),
@@ -7543,21 +7678,40 @@ t10cc <- data.frame(
   ) %>% 
   select(-c(n.1, n.2))
 
+#Kepping the omitted space
 t10cc_plot <- t10cc %>%
-  filter(year_diff != "2017–2016") %>%
-  mutate(x_pos = row_number())
+  mutate(
+    x_pos = row_number(),
+    year_label = ifelse(
+      year_diff == "2017-2016\n(omitted)",
+      "2017-2016\n(omitted)",
+      year_diff
+    ),
+    coef_plot = ifelse(year_diff == "2017-2016\n(omitted)", NA_real_, coef),
+    ymin_plot = ifelse(year_diff == "2017-2016\n(omitted)", NA_real_, ymin),
+    ymax_plot = ifelse(year_diff == "2017-2016\n(omitted)", NA_real_, ymax),
+    omitted = year_diff == "2017-2016\n(omitted)"
+  )
 
-p <- ggplot(t10cc_plot, aes(x = x_pos, y = coef)) +
+p <- ggplot(t10cc_plot, aes(x = x_pos, y = coef_plot)) +
   geom_errorbar(
-    aes(ymin = ymin, ymax = ymax),
+    aes(ymin = ymin_plot, ymax = ymax_plot),
     width = 0.2,
     size = 0.8,
-    color = "black"
+    color = "black",
+    na.rm = TRUE
   ) +
-  geom_point(size = 3, color = "black") +
+  geom_point(size = 3, color = "black", na.rm = TRUE) +
+  
+  geom_text( #Omitted marker
+    data = subset(t10cc_plot, omitted),
+    aes(x = x_pos, y = 0.16, label = "×"),
+    color = "#D62728",
+    size = 8
+  ) +
+  
   geom_hline(yintercept = 0, color = "#D62728", linewidth = 1) +
   labs(x = "Year Difference", y = "Average ENEM Score Coefficient") +
-  #geom_vline(xintercept = 4.5, color = "#BEBEBE", linetype = "dashed", size = 0.8) +
   theme_minimal(base_size = 20) +
   theme(
     panel.grid.major = element_blank(),
@@ -7569,7 +7723,7 @@ p <- ggplot(t10cc_plot, aes(x = x_pos, y = coef)) +
   ) +
   scale_x_continuous(
     breaks = t10cc_plot$x_pos,
-    labels = t10cc_plot$year_diff
+    labels = t10cc_plot$year_label
   )
 
 print(p)
@@ -7579,76 +7733,7 @@ ggsave(plot = p, filename = file.path(controls_figures_path, "fig_year_differenc
 ggsave(plot = p, filename = file.path(controls_pdf_path, "fig_year_differences_final_v01.eps"), device = "eps", height = 7, width = 10)
 # Original output: anos_dif_final.eps
 
-# 
-# 
-# # ---------------------------------------------------------------------------- #
-# ## 15.4 Diff-in-diff ----
-# # ---------------------------------------------------------------------------- #
-# 
-# base <- base %>% 
-#   mutate(aux_uf = mun_res %/% 100000,
-#          
-#          treat_west = ifelse(aux_uf %in% c(12,13,14,11, #AC, AM, RR, RO
-#                                            51, 50 #MT, MS
-#          ), 1, 0),
-#          end_dst = ifelse(ano == 2019, 1, 0)) %>% 
-#   arrange(mun_res, ano)
-# 
-# 
-# # ---------------------------------------------------------------------------- #
-# ### 15.4.1 Regression ----
-# # ---------------------------------------------------------------------------- #
-# 
-# library(fixest)
-# 
-# out <- feols(
-#   media_nota ~ treat_west*end_dst + abs(dist_hv_res),
-#   data = base,
-#   cluster = ~ seg_res,
-#   weights = ~ obs)
-# 
-# 
-# 
-# etable(out)
-# 
-# 
-# out2 <- feols(
-#   media_nota ~ treat_west:i(ano, ref = 2018)| 
-#     lat_res + lon_res,
-#   data = base,
-#   cluster = ~ seg_res,
-#   weights = ~ obs)
-# 
-# 
-# 
-# etable(out2)
-# 
-# iplot(out2)
-# 
-# # ---------------------------------------------------------------------------- #
-# ### 15.4.2 Graph ----
-# # ---------------------------------------------------------------------------- #
-# 
-# p <- ggplot(out, aes(x = ano, y = coef)) +
-#   geom_errorbar(aes(ymin = ymin, ymax = ymax), width = 0.2, size = 0.8, color = "black") +
-#   geom_point(size = 3, color = "black") +
-#   geom_hline(yintercept = 0, color = "#D62728", linewidth = 1) +
-#   labs(x = "Year", y = "ENEM Score") +
-#   geom_vline(xintercept = 2018.5, color = "#BEBEBE", linetype = "dashed", size = 0.8) +
-#   theme_minimal(base_size = 20) +
-#   theme(
-#     panel.grid.major = element_blank(),
-#     panel.grid.minor = element_blank(),
-#     axis.line = element_line(),
-#     axis.text.y = element_text(size = 18),
-#     axis.text.x = element_text(size = 18),
-#     legend.position = "none"
-#   ) +
-#   scale_x_continuous(breaks = t10cc$ano) 
-# 
-# 
-# print(p)
-# rm(p, gap_x, ano_ref, ano_ref2, ano_list, ano, t10cc, t10ccplot, n_list, base_t)
+
 # ---------------------------------------------------------------------------- #
 # 16. Filter + Desc ----
 # Compares filtered samples and applicant groups to document how sample construction changes results.
