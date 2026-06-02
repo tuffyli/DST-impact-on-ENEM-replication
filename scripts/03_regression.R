@@ -1234,54 +1234,6 @@ list[[as.character(paste0(2019,"-",2018,"|all"))]] <- rdrobust(
 )
 
 # ---------------------------------------------------------------------------- #
-# Pol + All
-# ---------------------------------------------------------------------------- #
-
-
-list[[as.character(paste0(2019,"-",2018,"|all+pol"))]] <- rdrobust(
-  y = base_a$d.media[base_a$ano == 2019],
-  x = base_a$dist_hv_border[base_a$ano == 2018],
-  c = 0,
-  p = 2,
-  cluster = base_a$seg[base_a$ano == 2018],
-  weights = base_a$obs[base_a$ano == 2018],
-  vce = "hc0",
-  covs = cbind(
-    ef,
-    base_a$lat[base_a$ano == 2018],
-    base_a$lon[base_a$ano == 2018],
-    #Weather
-    base_a$dtempd1[base_a$ano == 2019], #Temperature
-    base_a$dumidd1[base_a$ano == 2019], #Humidity d1
-    base_a$dumidd2[base_a$ano == 2019], #Humidty d2
-    base_a$dtempd2[base_a$ano == 2019], #temp2
-    
-    #House
-    base_a$dn_ban[base_a$ano == 2019], #bathrooms
-    base_a$dpessoa[base_a$ano == 2019], #people in household
-    base_a$dn_qua[base_a$ano == 2019], #houses
-    base_a$dn_car[base_a$ano == 2019], #cars
-    base_a$dn_gel[base_a$ano == 2019], # refrigerator
-    base_a$dn_cel[base_a$ano == 2019], # cellphone
-    base_a$dpc[base_a$ano == 2019],    #pc
-    base_a$dinternet[base_a$ano == 2019], #internet
-    base_a$dempr_dom[base_a$ano == 2019], #Housekeeping
-    
-    #remaining
-    base_a$descm[base_a$ano == 2019], #mother educ
-    base_a$dfem[base_a$ano == 2019], #Female
-    base_a$dppi[base_a$ano == 2019], #PPI
-    base_a$didade[base_a$ano == 2019], #Age
-    base_a$descp[base_a$ano == 2019], #father educ
-    base_a$drenda1[base_a$ano == 2019], #wage < 1MW
-    base_a$drenda110[base_a$ano == 2019], #wage 1MW - 10MW
-    base_a$drenda10[base_a$ano == 2019], #wage > 10MW
-    base_a$dgdppc[base_a$ano == 2019] #gdppc
-
-  )
-)
-
-# ---------------------------------------------------------------------------- #
 ##### 1.2.4.2.2 Table ----- 
 # ---------------------------------------------------------------------------- #
 
@@ -1321,12 +1273,6 @@ result <- data.frame(
     fmt_se(t10$se[3]),
     fmt_npair(t10$n_left[3], t10$n_rght[3]),
     fmt_bw(t10$bw[3])
-  ),
-  `(3)` = c( #1918 all pol2
-    fmt_est(t10$coef[4], t10$pv[4]),
-    fmt_se(t10$se[4]),
-    fmt_npair(t10$n_left[4], t10$n_rght[4]),
-    fmt_bw(t10$bw[4])
   ),
   check.names = FALSE,
   stringsAsFactors = FALSE
@@ -1408,53 +1354,6 @@ list[[as.character(paste0(2019,"-",2018,"esc|all"))]] <- rdrobust(
   )
 )
 
-# ---------------------------------------------------------------------------- #
-# Pol + All
-# ---------------------------------------------------------------------------- #
-
-
-list[[as.character(paste0(2019,"-",2018,"esc|all+pol"))]] <- rdrobust(
-  y = base_esc$d.media[base_esc$ano == 2019],
-  x = base_esc$dist_hv_esc[base_esc$ano == 2018],
-  c = 0,
-  p = 2,
-  cluster = base_esc$seg_esc[base_esc$ano == 2018],
-  weights = base_esc$obs[base_esc$ano == 2018],
-  vce = "hc0",
-  covs = cbind(
-    ef,
-    base_esc$lat_esc[base_esc$ano == 2018],
-    base_esc$lon_esc[base_esc$ano == 2018],
-    #Weather
-    base_esc$dtempd1[base_esc$ano == 2019], #Temperature
-    base_esc$dumidd1[base_esc$ano == 2019], #Humidity d1
-    base_esc$dumidd2[base_esc$ano == 2019], #Humidty d2
-    base_esc$dtempd2[base_esc$ano == 2019], #temp2
-    
-    #House
-    base_esc$dn_ban[base_esc$ano == 2019], #bathrooms
-    base_esc$dpessoa[base_esc$ano == 2019], #people in household
-    base_esc$dn_qua[base_esc$ano == 2019], #houses
-    base_esc$dn_car[base_esc$ano == 2019], #cars
-    base_esc$dn_gel[base_esc$ano == 2019], # refrigerator
-    base_esc$dn_cel[base_esc$ano == 2019], # cellphone
-    base_esc$dpc[base_esc$ano == 2019],    #pc
-    base_esc$dinternet[base_esc$ano == 2019], #internet
-    base_esc$dempr_dom[base_esc$ano == 2019], #Housekeeping
-    
-    #remaining
-    base_esc$descm[base_esc$ano == 2019], #mother educ
-    base_esc$dfem[base_esc$ano == 2019], #Female
-    base_esc$dppi[base_esc$ano == 2019], #PPI
-    base_esc$didade[base_esc$ano == 2019], #Age
-    base_esc$descp[base_esc$ano == 2019], #father educ
-    base_esc$drenda1[base_esc$ano == 2019], #wage < 1MW
-    base_esc$drenda110[base_esc$ano == 2019], #wage 1MW - 10MW
-    base_esc$drenda10[base_esc$ano == 2019], #wage > 10MW
-    base_esc$dgdppc[base_esc$ano == 2019] #gdppc
-
-  )
-)
 
 # ---------------------------------------------------------------------------- #
 ##### 1.2.4.3.2 Table ----- 
@@ -1494,12 +1393,6 @@ result <- data.frame(
     fmt_se(t10$se[5]),
     fmt_npair(t10$n_left[5], t10$n_rght[5]),
     fmt_bw(t10$bw[5])
-  ),
-  `(3)` = c(
-    fmt_est(t10$coef[6], t10$pv[6]),
-    fmt_se(t10$se[6]),
-    fmt_npair(t10$n_left[6], t10$n_rght[6]),
-    fmt_bw(t10$bw[6])
   ),
   check.names = FALSE,
   stringsAsFactors = FALSE
