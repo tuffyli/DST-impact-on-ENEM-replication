@@ -5,7 +5,7 @@
 # Creation date: 11/14/2023
 # Created by: Bruno Komatsu
 
-# Last modification: 05/06/2026
+# Last modification: 02/06/2026
 # Modified by: Tuffy Issa
 
 # ---- Description: ---- #
@@ -41,6 +41,7 @@ library(ggpattern)
 library(scales)
 library(purrr)
 
+set.seed(12345)
 # ---------------------------------------------------------------------------- #
 # 2. Paths and Helpers ----
 # ---------------------------------------------------------------------------- #
