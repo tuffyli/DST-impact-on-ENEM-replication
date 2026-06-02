@@ -306,10 +306,7 @@ list[[as.character(paste0(2019,"-",2018,"|fuso"))]] <- rdrobust(
   covs = cbind(
     efr,
     base_res$lat_res[base_res$ano == 2018],
-    base_res$lon_res[base_res$ano == 2018],
-    base_res$h13[base_res$ano == 2019],
-    base_res$h12[base_res$ano == 2019],
-    base_res$h11[base_res$ano == 2019]
+    base_res$lon_res[base_res$ano == 2018]
   )
 )
 
@@ -341,12 +338,7 @@ list[[as.character(paste0(2019,"-",2018,"|dem+temp"))]] <- rdrobust(
     base_res$dfem[base_res$ano == 2019], #Female
     base_res$dppi[base_res$ano == 2019], #PPI
     base_res$didade[base_res$ano == 2019], #Age
-    base_res$descp[base_res$ano == 2019], #father educ
-    
-    #Timezone
-    base_res$h13[base_res$ano == 2019],
-    base_res$h12[base_res$ano == 2019],
-    base_res$h11[base_res$ano == 2019]
+    base_res$descp[base_res$ano == 2019] #father educ
   )
 )
 
@@ -391,13 +383,8 @@ list[[as.character(paste0(2019,"-",2018,"|fuso+temp+house"))]] <- rdrobust(
     base_res$dn_cel[base_res$ano == 2019], # cellphone
     base_res$dpc[base_res$ano == 2019],    #pc
     base_res$dinternet[base_res$ano == 2019], #internet
-    base_res$dempr_dom[base_res$ano == 2019], #Housekeeping
-    
-    
-    #Timezones
-    base_res$h13[base_res$ano == 2019],
-    base_res$h12[base_res$ano == 2019],
-    base_res$h11[base_res$ano == 2019]
+    base_res$dempr_dom[base_res$ano == 2019] #Housekeeping
+
   )
 )
 
@@ -445,12 +432,8 @@ list[[as.character(paste0(2019,"-",2018,"|all"))]] <- rdrobust(
     base_res$drenda1[base_res$ano == 2019], #wage < 1MW
     base_res$drenda110[base_res$ano == 2019], #wage 1MW - 10MW
     base_res$drenda10[base_res$ano == 2019], #wage > 10MW
-    base_res$dgdppc[base_res$ano == 2019], #gdppc
-    
-    #Timezone
-    base_res$h13[base_res$ano == 2019],
-    base_res$h12[base_res$ano == 2019],
-    base_res$h11[base_res$ano == 2019]
+    base_res$dgdppc[base_res$ano == 2019] #gdppc
+
   )
 )
 
@@ -576,12 +559,8 @@ list[[as.character(paste0(2019,"-",2018,"|all+p2"))]] <- rdrobust(
     base_res$drenda1[base_res$ano == 2019], #wage < 1MW
     base_res$drenda110[base_res$ano == 2019], #wage 1MW - 10MW
     base_res$drenda10[base_res$ano == 2019], #wage > 10MW
-    base_res$dgdppc[base_res$ano == 2019], #gdppc
+    base_res$dgdppc[base_res$ano == 2019] #gdppc
     
-    #Timezone
-    base_res$h13[base_res$ano == 2019],
-    base_res$h12[base_res$ano == 2019],
-    base_res$h11[base_res$ano == 2019]
   )
 )
 
@@ -975,12 +954,9 @@ list[[as.character(paste0(2018,"-",2017,"prova|0"))]] <- rdrobust(
     base_a$drenda1[base_a$ano == 2018], #wage < 1MW
     base_a$drenda110[base_a$ano == 2018], #wage 1MW - 10MW
     base_a$drenda10[base_a$ano == 2018], #wage > 10MW
-    base_a$dgdppc[base_a$ano == 2018], #gdppc
+    base_a$dgdppc[base_a$ano == 2018] #gdppc
     
-    #Timezone
-    base_a$h13[base_a$ano == 2018],
-    base_a$h12[base_a$ano == 2018],
-    base_a$h11[base_a$ano == 2018]
+
   )
 )
 
@@ -1033,12 +1009,8 @@ list[[as.character(paste0(2018,"-",2017,"esc|0"))]] <- rdrobust(
     base_esc$drenda1[base_esc$ano == 2018], #wage < 1MW
     base_esc$drenda110[base_esc$ano == 2018], #wage 1MW - 10MW
     base_esc$drenda10[base_esc$ano == 2018], #wage > 10MW
-    base_esc$dgdppc[base_esc$ano == 2018], #gdppc
-    
-    #Timezone
-    base_esc$h13[base_esc$ano == 2018],
-    base_esc$h12[base_esc$ano == 2018],
-    base_esc$h11[base_esc$ano == 2018]
+    base_esc$dgdppc[base_esc$ano == 2018] #gdppc
+
   )
 )
 
@@ -1257,12 +1229,7 @@ list[[as.character(paste0(2019,"-",2018,"|all"))]] <- rdrobust(
     base_a$drenda1[base_a$ano == 2019], #wage < 1MW
     base_a$drenda110[base_a$ano == 2019], #wage 1MW - 10MW
     base_a$drenda10[base_a$ano == 2019], #wage > 10MW
-    base_a$dgdppc[base_a$ano == 2019], #gdppc
-    
-    #Timezone
-    base_a$h13[base_a$ano == 2019],
-    base_a$h12[base_a$ano == 2019],
-    base_a$h11[base_a$ano == 2019]
+    base_a$dgdppc[base_a$ano == 2019] #gdppc
   )
 )
 
@@ -1309,12 +1276,8 @@ list[[as.character(paste0(2019,"-",2018,"|all+pol"))]] <- rdrobust(
     base_a$drenda1[base_a$ano == 2019], #wage < 1MW
     base_a$drenda110[base_a$ano == 2019], #wage 1MW - 10MW
     base_a$drenda10[base_a$ano == 2019], #wage > 10MW
-    base_a$dgdppc[base_a$ano == 2019], #gdppc
-    
-    #Timezone
-    base_a$h13[base_a$ano == 2019],
-    base_a$h12[base_a$ano == 2019],
-    base_a$h11[base_a$ano == 2019]
+    base_a$dgdppc[base_a$ano == 2019] #gdppc
+
   )
 )
 
@@ -1440,12 +1403,8 @@ list[[as.character(paste0(2019,"-",2018,"esc|all"))]] <- rdrobust(
     base_esc$drenda1[base_esc$ano == 2019], #wage < 1MW
     base_esc$drenda110[base_esc$ano == 2019], #wage 1MW - 10MW
     base_esc$drenda10[base_esc$ano == 2019], #wage > 10MW
-    base_esc$dgdppc[base_esc$ano == 2019], #gdppc
+    base_esc$dgdppc[base_esc$ano == 2019] #gdppc
     
-    #Timezone
-    base_esc$h13[base_esc$ano == 2019],
-    base_esc$h12[base_esc$ano == 2019],
-    base_esc$h11[base_esc$ano == 2019]
   )
 )
 
@@ -1492,12 +1451,8 @@ list[[as.character(paste0(2019,"-",2018,"esc|all+pol"))]] <- rdrobust(
     base_esc$drenda1[base_esc$ano == 2019], #wage < 1MW
     base_esc$drenda110[base_esc$ano == 2019], #wage 1MW - 10MW
     base_esc$drenda10[base_esc$ano == 2019], #wage > 10MW
-    base_esc$dgdppc[base_esc$ano == 2019], #gdppc
-    
-    #Timezone
-    base_esc$h13[base_esc$ano == 2019],
-    base_esc$h12[base_esc$ano == 2019],
-    base_esc$h11[base_esc$ano == 2019]
+    base_esc$dgdppc[base_esc$ano == 2019] #gdppc
+
   )
 )
 
@@ -1745,10 +1700,7 @@ list[[as.character(paste0(2018,"-",2017,"|fuso"))]] <- rdrobust(
   covs = cbind(
     efr,
     base_res$lat_res[base_res$ano == 2017],
-    base_res$lon_res[base_res$ano == 2017],
-    base_res$h13[base_res$ano == 2018],
-    base_res$h12[base_res$ano == 2018],
-    base_res$h11[base_res$ano == 2018]
+    base_res$lon_res[base_res$ano == 2017]
   )
 )
 
@@ -1768,9 +1720,6 @@ list[[as.character(paste0(2018,"-",2017,"|dem"))]] <- rdrobust(
     efr,
     base_res$lat_res[base_res$ano == 2017],
     base_res$lon_res[base_res$ano == 2017],
-    base_res$h13[base_res$ano == 2018],
-    base_res$h12[base_res$ano == 2018],
-    base_res$h11[base_res$ano == 2018],
     #Dists
     #Parents and Individuals Characteristics
     base_res$descm[base_res$ano == 2018], #mother educ
@@ -1822,12 +1771,8 @@ list[[as.character(paste0(2018,"-",2017,"|fuso+temp+house"))]] <- rdrobust(
     base_res$dn_cel[base_res$ano == 2018], # cellphone
     base_res$dpc[base_res$ano == 2018],    #pc
     base_res$dinternet[base_res$ano == 2018], #internet
-    base_res$dempr_dom[base_res$ano == 2018], #Housekeeping
+    base_res$dempr_dom[base_res$ano == 2018] #Housekeeping
     
-    #Timezones
-    base_res$h13[base_res$ano == 2018],
-    base_res$h12[base_res$ano == 2018],
-    base_res$h11[base_res$ano == 2018]
   )
 )
 
@@ -1873,12 +1818,9 @@ list[[as.character(paste0(2018,"-",2017,"|all"))]] <- rdrobust(
     base_res$drenda1[base_res$ano == 2018], #wage < 1MW
     base_res$drenda110[base_res$ano == 2018], #wage 1MW - 10MW
     base_res$drenda10[base_res$ano == 2018], #wage > 10MW
-    base_res$dgdppc[base_res$ano == 2018], #gdppc
+    base_res$dgdppc[base_res$ano == 2018] #gdppc
     
-    #Timezones
-    base_res$h13[base_res$ano == 2018],
-    base_res$h12[base_res$ano == 2018],
-    base_res$h11[base_res$ano == 2018]
+
   )
 )
 
@@ -1925,12 +1867,8 @@ list[[as.character(paste0(2018,"-",2017,"|pol+all"))]] <- rdrobust(
     base_res$drenda1[base_res$ano == 2018], #wage < 1MW
     base_res$drenda110[base_res$ano == 2018], #wage 1MW - 10MW
     base_res$drenda10[base_res$ano == 2018], #wage > 10MW
-    base_res$dgdppc[base_res$ano == 2018], #gdppc
-    
-    #Timezone
-    base_res$h13[base_res$ano == 2018],
-    base_res$h12[base_res$ano == 2018],
-    base_res$h11[base_res$ano == 2018]
+    base_res$dgdppc[base_res$ano == 2018] #gdppc
+
   )
 )
 
@@ -2749,12 +2687,8 @@ list[[as.character(paste0(2018,"-",2017,"C|NF"))]] <- rdrobust(
     base_c$dn_cel[base_c$ano == 2018], # cellphone
     base_c$dpc[base_c$ano == 2018],    #pc
     base_c$dinternet[base_c$ano == 2018], #internet
-    base_c$dempr_dom[base_c$ano == 2018], #Housekeeping
-    
-    #Timezones
-    base_c$h13[base_c$ano == 2018],
-    base_c$h12[base_c$ano == 2018],
-    base_c$h11[base_c$ano == 2018]
+    base_c$dempr_dom[base_c$ano == 2018] #Housekeeping
+
   )
 )
 
@@ -2815,11 +2749,7 @@ for(j in bins) {
   ef <- dummy_cols(clu$seg_res)
   ef <- ef %>% select(-1,-2)
   
-  #time 
-  time <- temp %>% 
-    filter(ano == 2018) %>% 
-    select(h11, h12, h13)
-  
+
   #all
   all <- temp %>% 
     filter(ano == 2018) %>% 
@@ -2844,7 +2774,7 @@ for(j in bins) {
                                              subset = temp$subset == 1,
                                              hide = T,
                                              masspoints= "adjust",
-                                             covs = cbind(ef,latv,lonv, time, all),
+                                             covs = cbind(ef,latv,lonv, all),
                                              nbins = c(j,j)
   )
   
@@ -3055,12 +2985,8 @@ for (i in d_list){
         base_res$drenda1[base_res$ano == 2019], #wage < 1MW
         base_res$drenda110[base_res$ano == 2019], #wage 1MW - 10MW
         base_res$drenda10[base_res$ano == 2019], #wage > 10MW
-        base_res$dgdppc[base_res$ano == 2019], #gdppc
-        
-        #Timezone
-        base_res$h13[base_res$ano == 2019],
-        base_res$h12[base_res$ano == 2019],
-        base_res$h11[base_res$ano == 2019]
+        base_res$dgdppc[base_res$ano == 2019] #gdppc
+      
       )
     )
   
@@ -3272,12 +3198,8 @@ for (i in d_list){
         base_res$drenda1[base_res$ano == 2019], #wage < 1MW
         base_res$drenda110[base_res$ano == 2019], #wage 1MW - 10MW
         base_res$drenda10[base_res$ano == 2019], #wage > 10MW
-        base_res$dgdppc[base_res$ano == 2019], #gdppc
+        base_res$dgdppc[base_res$ano == 2019] #gdppc
         
-        #Timezone
-        base_res$h13[base_res$ano == 2019],
-        base_res$h12[base_res$ano == 2019],
-        base_res$h11[base_res$ano == 2019]
       )
     )
   
@@ -3517,12 +3439,8 @@ for (i in d_list){
         base_res$drenda1[base_res$ano == 2019], #wage < 1MW
         base_res$drenda110[base_res$ano == 2019], #wage 1MW - 10MW
         base_res$drenda10[base_res$ano == 2019], #wage > 10MW
-        base_res$dgdppc[base_res$ano == 2019], #gdppc
-        
-        #Timezone
-        base_res$h13[base_res$ano == 2019],
-        base_res$h12[base_res$ano == 2019],
-        base_res$h11[base_res$ano == 2019]
+        base_res$dgdppc[base_res$ano == 2019] #gdppc
+
       )
     )
   
@@ -3600,12 +3518,8 @@ for (i in new_list){
         base_res$drenda1[base_res$ano == 2019], #wage < 1MW
         base_res$drenda110[base_res$ano == 2019], #wage 1MW - 10MW
         base_res$drenda10[base_res$ano == 2019], #wage > 10MW
-        base_res$dgdppc[base_res$ano == 2019], #gdppc
-        
-        #Timezone
-        base_res$h13[base_res$ano == 2019],
-        base_res$h12[base_res$ano == 2019],
-        base_res$h11[base_res$ano == 2019]
+        base_res$dgdppc[base_res$ano == 2019] #gdppc
+
       )
     )
   
@@ -3846,12 +3760,8 @@ for (i in d_list){
         base_res$drenda1[base_res$ano == 2019], #wage < 1MW
         base_res$drenda110[base_res$ano == 2019], #wage 1MW - 10MW
         base_res$drenda10[base_res$ano == 2019], #wage > 10MW
-        base_res$dgdppc[base_res$ano == 2019], #gdppc
-        
-        #Timezone
-        base_res$h13[base_res$ano == 2019],
-        base_res$h12[base_res$ano == 2019],
-        base_res$h11[base_res$ano == 2019]
+        base_res$dgdppc[base_res$ano == 2019] #gdppc
+
       )
     )
   
@@ -3914,12 +3824,8 @@ for (i in d_list){
         base_res2$drenda1[base_res2$ano == 2018], #wage < 1MW
         base_res2$drenda110[base_res2$ano == 2018], #wage 1MW - 10MW
         base_res2$drenda10[base_res2$ano == 2018], #wage > 10MW
-        base_res2$dgdppc[base_res2$ano == 2018], #gdppc
-        
-        #Timezone
-        base_res2$h13[base_res2$ano == 2018],
-        base_res2$h12[base_res2$ano == 2018],
-        base_res2$h11[base_res2$ano == 2018]
+        base_res2$dgdppc[base_res2$ano == 2018] #gdppc
+
       )
     )
   
@@ -4348,12 +4254,8 @@ for (i in d_list){
         base_a$drenda10[base_a$ano == 2019], #wage > 10MW
         base_a$dgdppc[base_a$ano == 2019], #gdppc
         
-        base_a$dtempd2[base_a$ano == 2019], #temp2
-        
-        #Timezone
-        base_a$h13[base_a$ano == 2019],
-        base_a$h12[base_a$ano == 2019],
-        base_a$h11[base_a$ano == 2019]
+        base_a$dtempd2[base_a$ano == 2019] #temp2
+
       )
     )
   
@@ -4451,12 +4353,8 @@ for (i in d_list){
         temp$drenda10, #wage > 10MW
         temp$dgdppc, #gdppc
         
-        temp$dtempd2, #temp2
-        
-        #Timezone
-        temp$h13,
-        temp$h12,
-        temp$h11
+        temp$dtempd2 #temp2
+
       )
     )
   
@@ -4769,12 +4667,7 @@ for(ano_ref in ano_list) {
         base_a$drenda10[base_a$ano == 2019], #wage > 10MW
         base_a$dgdppc[base_a$ano == 2019], #gdppc
         
-        base_a$dtempd2[base_a$ano == 2019], #temp2
-        
-        #Timezone
-        base_a$h13[base_a$ano == 2019],
-        base_a$h12[base_a$ano == 2019],
-        base_a$h11[base_a$ano == 2019]
+        base_a$dtempd2[base_a$ano == 2019] #temp2
       )
     )
     
@@ -4818,12 +4711,7 @@ for(ano_ref in ano_list) {
         base_a$drenda10[base_a$ano == 2019], #wage > 10MW
         base_a$dgdppc[base_a$ano == 2019], #gdppc
         
-        base_a$dtempd2[base_a$ano == 2019], #temp2
-        
-        #Timezone
-        base_a$h13[base_a$ano == 2019],
-        base_a$h12[base_a$ano == 2019],
-        base_a$h11[base_a$ano == 2019]
+        base_a$dtempd2[base_a$ano == 2019] #temp2
       )
     )
     
@@ -4867,12 +4755,7 @@ for(ano_ref in ano_list) {
         base_a$drenda10[base_a$ano == 2019], #wage > 10MW
         base_a$dgdppc[base_a$ano == 2019], #gdppc
         
-        base_a$dtempd2[base_a$ano == 2019], #temp2
-        
-        #Timezone
-        base_a$h13[base_a$ano == 2019],
-        base_a$h12[base_a$ano == 2019],
-        base_a$h11[base_a$ano == 2019]
+        base_a$dtempd2[base_a$ano == 2019] #temp2
       )
     )
     
@@ -5175,12 +5058,7 @@ for(ano_ref in ano_list) {
         base_a$drenda10[base_a$ano == 2019], #wage > 10MW
         base_a$dgdppc[base_a$ano == 2019], #gdppc
         
-        base_a$dtempd2[base_a$ano == 2019], #temp2
-        
-        #Timezone
-        base_a$h13[base_a$ano == 2019],
-        base_a$h12[base_a$ano == 2019],
-        base_a$h11[base_a$ano == 2019]
+        base_a$dtempd2[base_a$ano == 2019] #temp2
       )
     )
     
@@ -5224,12 +5102,7 @@ for(ano_ref in ano_list) {
         base_a$drenda10[base_a$ano == 2019], #wage > 10MW
         base_a$dgdppc[base_a$ano == 2019], #gdppc
         
-        base_a$dtempd2[base_a$ano == 2019], #temp2
-        
-        #Timezone
-        base_a$h13[base_a$ano == 2019],
-        base_a$h12[base_a$ano == 2019],
-        base_a$h11[base_a$ano == 2019]
+        base_a$dtempd2[base_a$ano == 2019] #temp2
       )
     )
     
@@ -5273,12 +5146,7 @@ for(ano_ref in ano_list) {
         base_a$drenda10[base_a$ano == 2019], #wage > 10MW
         base_a$dgdppc[base_a$ano == 2019], #gdppc
         
-        base_a$dtempd2[base_a$ano == 2019], #temp2
-        
-        #Timezone
-        base_a$h13[base_a$ano == 2019],
-        base_a$h12[base_a$ano == 2019],
-        base_a$h11[base_a$ano == 2019]
+        base_a$dtempd2[base_a$ano == 2019] #temp2
       )
     )
     
@@ -5584,12 +5452,8 @@ for(ano_ref in ano_list) {
         base_a$drenda10[base_a$ano == 2019], #wage > 10MW
         base_a$dgdppc[base_a$ano == 2019], #gdppc
         
-        base_a$dtempd2[base_a$ano == 2019], #temp2
-        
-        #Timezone
-        base_a$h13[base_a$ano == 2019],
-        base_a$h12[base_a$ano == 2019],
-        base_a$h11[base_a$ano == 2019]
+        base_a$dtempd2[base_a$ano == 2019] #temp2
+
       )
     )
     
@@ -5633,12 +5497,8 @@ for(ano_ref in ano_list) {
         base_a$drenda10[base_a$ano == 2019], #wage > 10MW
         base_a$dgdppc[base_a$ano == 2019], #gdppc
         
-        base_a$dtempd2[base_a$ano == 2019], #temp2
-        
-        #Timezone
-        base_a$h13[base_a$ano == 2019],
-        base_a$h12[base_a$ano == 2019],
-        base_a$h11[base_a$ano == 2019]
+        base_a$dtempd2[base_a$ano == 2019] #temp2
+
       )
     )
     
@@ -5682,12 +5542,8 @@ for(ano_ref in ano_list) {
         base_a$drenda10[base_a$ano == 2019], #wage > 10MW
         base_a$dgdppc[base_a$ano == 2019], #gdppc
         
-        base_a$dtempd2[base_a$ano == 2019], #temp2
-        
-        #Timezone
-        base_a$h13[base_a$ano == 2019],
-        base_a$h12[base_a$ano == 2019],
-        base_a$h11[base_a$ano == 2019]
+        base_a$dtempd2[base_a$ano == 2019] #temp2
+
       )
     )
     
@@ -5925,12 +5781,8 @@ for (j in c(0:1)){
       base_a$drenda10[base_a$ano == 2019], #wage > 10MW
       base_a$dgdppc[base_a$ano == 2019], #gdppc
       
-      base_a$dtempd2[base_a$ano == 2019], #temp2
-      
-      #Timezone
-      base_a$h13[base_a$ano == 2019],
-      base_a$h12[base_a$ano == 2019],
-      base_a$h11[base_a$ano == 2019]
+      base_a$dtempd2[base_a$ano == 2019] #temp2
+
     )
   )
 
@@ -5974,12 +5826,8 @@ for (j in c(0:1)){
       base_a$drenda10[base_a$ano == 2019], #wage > 10MW
       base_a$dgdppc[base_a$ano == 2019], #gdppc
       
-      base_a$dtempd2[base_a$ano == 2019], #temp2
-      
-      #Timezone
-      base_a$h13[base_a$ano == 2019],
-      base_a$h12[base_a$ano == 2019],
-      base_a$h11[base_a$ano == 2019]
+      base_a$dtempd2[base_a$ano == 2019] #temp2
+
     )
   )
   
@@ -6022,12 +5870,8 @@ for (j in c(0:1)){
       base_a$drenda10[base_a$ano == 2019], #wage > 10MW
       base_a$dgdppc[base_a$ano == 2019], #gdppc
       
-      base_a$dtempd2[base_a$ano == 2019], #temp2
-      
-      #Timezone
-      base_a$h13[base_a$ano == 2019],
-      base_a$h12[base_a$ano == 2019],
-      base_a$h11[base_a$ano == 2019]
+      base_a$dtempd2[base_a$ano == 2019] #temp2
+
     )
   )
   
@@ -6272,12 +6116,8 @@ for (i in var_list) {
       base_a$drenda10[base_a$ano == 2019], #wage > 10MW
       base_a$dgdppc[base_a$ano == 2019], #gdppc
       
-      base_a$dtempd2[base_a$ano == 2019], #temp2
-      
-      #Timezone
-      base_a$h13[base_a$ano == 2019],
-      base_a$h12[base_a$ano == 2019],
-      base_a$h11[base_a$ano == 2019]
+      base_a$dtempd2[base_a$ano == 2019] #temp2
+
     )
   )
   
@@ -6321,12 +6161,7 @@ for (i in var_list) {
       base_a$drenda10[base_a$ano == 2019], #wage > 10MW
       base_a$dgdppc[base_a$ano == 2019], #gdppc
       
-      base_a$dtempd2[base_a$ano == 2019], #temp2
-      
-      #Timezone
-      base_a$h13[base_a$ano == 2019],
-      base_a$h12[base_a$ano == 2019],
-      base_a$h11[base_a$ano == 2019]
+      base_a$dtempd2[base_a$ano == 2019] #temp2
     )
   )
   
@@ -6561,12 +6396,8 @@ for (i in time_list){
       b_temp$drenda10[b_temp$ano == 2019], #wage > 10MW
       b_temp$dgdppc[b_temp$ano == 2019], #gdppc
       
-      b_temp$dtempd2[b_temp$ano == 2019], #temp2
-      
-      #Timezone
-      b_temp$h13[b_temp$ano == 2019],
-      b_temp$h12[b_temp$ano == 2019],
-      b_temp$h11[b_temp$ano == 2019]
+      b_temp$dtempd2[b_temp$ano == 2019] #temp2
+
     )
   )
   
@@ -6908,12 +6739,8 @@ for (c in 1:length(bws)) {
                  base_a$drenda10[base_a$ano == 2019], #wage > 10MW
                  base_a$dgdppc[base_a$ano == 2019], #gdppc
                  
-                 base_a$dtempd2[base_a$ano == 2019], #temp2
-                 
-                 #Timezone
-                 base_a$h13[base_a$ano == 2019],
-                 base_a$h12[base_a$ano == 2019],
-                 base_a$h11[base_a$ano == 2019]),
+                 base_a$dtempd2[base_a$ano == 2019] #temp2
+                 ),
     h = bws[c],
     b = b
   )
@@ -7316,10 +7143,6 @@ for (i in c("5","9","3")) {
     filter(ano == 2017) %>% 
     select(lon_res)
   
-  #time 
-  time <- temp %>% 
-    filter(ano == 2019) %>% 
-    select(h11, h12, h13)
   
   #all
   all <- temp %>% 
@@ -7361,7 +7184,6 @@ for (i in c("5","9","3")) {
     covs = cbind(ef,
                  latv,
                  lonv,
-                 time,
                  all)
   )
 
@@ -7951,79 +7773,6 @@ base <- readRDS(file.path(processed_path, "base_final.RDS")) %>%
   filter(ano %in% c(2019,2018)) %>% 
   setDT()
 
-
-# ---------------------------------------------------------------------------- #
-# All
-# ---------------------------------------------------------------------------- #
-
-base_t <- base[, .(
-  media    = mean(media, na.rm = TRUE),
-  escm     = mean(escm, na.rm = TRUE),
-  escp     = mean(escp, na.rm = TRUE),
-  pessoa   = mean(pessoas_dom, na.rm = TRUE),
-  empr_dom = mean(empr_dom, na.rm = TRUE),
-  n_ban    = mean(n_banheiro, na.rm = TRUE),
-  n_qua    = mean(n_quartos, na.rm = TRUE),
-  n_car    = mean(n_carros, na.rm = TRUE),
-  n_gel    = mean(n_geladeira, na.rm = TRUE),
-  n_cel    = mean(n_celular, na.rm = TRUE),
-  pc       = mean(pc, na.rm = TRUE),
-  internet = mean(internet, na.rm = TRUE),
-  renda1   = mean(renda1, na.rm = TRUE),
-  renda110 = mean(renda_1_10, na.rm = TRUE),
-  renda10  = mean(renda_10, na.rm = TRUE),
-  gdppc    = mean(gdppc, na.rm = TRUE),
-  fem      = mean(fem, na.rm = TRUE),
-  idade    = mean(id18, na.rm = TRUE),
-  ppi      = mean(ppi, na.rm = TRUE),
-  tempd1   = mean(temp_d1, na.rm = TRUE),
-  tempd2   = mean(temp_d2, na.rm = TRUE),
-  umidd2   = mean(umid_d2, na.rm = TRUE),
-  umidd1   = mean(umid_d1, na.rm = TRUE),
-  h13 = first(h13),
-  h12 = first(h12),
-  h11 = first(h11),
-  obs = .N
-), by = .(mun_res, ano, dist_hv_res, seg_res, lat_res, lon_res)] %>%
-  filter(as.numeric(ano) %in% c(2018, 2019)) %>%
-  arrange(mun_res, ano) %>%
-  group_by(mun_res) %>%
-  filter(n_distinct(ano) == 2) %>%
-  ungroup()
-
-
-for (v in vars_diff) {
-  
-  if (!v %in% names(base_t)) {
-    warning(paste("Variável não encontrada:", v))
-    next
-  }
-  
-  v1 <- paste0("v1_", v)
-  v2 <- paste0("v2_", v)
-  dv <- paste0("d", v)
-  
-  base_t[[v1]] <- ifelse(base_t$ano == 2018, base_t[[v]], NA_real_)
-  
-  base_t[[v2]] <- ave(
-    base_t[[v1]], 
-    base_t$mun_res, 
-    FUN = function(x) {
-      if (all(is.na(x))) NA_real_ else max(x, na.rm = TRUE)
-    }
-  )
-  
-  base_t[[dv]] <- base_t[[v]] - base_t[[v2]]
-  
-  base_t[[dv]][!is.finite(base_t[[dv]])] <- NA
-}
-
-temp_cols <- grep("^(v1_|v2_)", names(base_t), value = TRUE)
-base_t <- base_t %>% select(-all_of(temp_cols)) %>% 
-  mutate(across(everything(), ~ replace(.x, is.infinite(.x), NA))) %>%  #Turning INF to NA
-  rename(d.media = dmedia)
-
-
 # ---------------------------------------------------------------------------- #
 # Main
 # ---------------------------------------------------------------------------- #
@@ -8094,76 +7843,6 @@ base_res <- base_res %>% select(-all_of(temp_cols)) %>%
   mutate(across(everything(), ~ replace(.x, is.infinite(.x), NA))) %>%  #Turning INF to NA
   rename(d.media = dmedia)
 
-
-# ---------------------------------------------------------------------------- #
-#Private 
-# ---------------------------------------------------------------------------- #
-base_p <- base[priv1 == 1, .(
-  media    = mean(media, na.rm = TRUE),
-  escm     = mean(escm, na.rm = TRUE),
-  escp     = mean(escp, na.rm = TRUE),
-  pessoa   = mean(pessoas_dom, na.rm = TRUE),
-  empr_dom = mean(empr_dom, na.rm = TRUE),
-  n_ban    = mean(n_banheiro, na.rm = TRUE),
-  n_qua    = mean(n_quartos, na.rm = TRUE),
-  n_car    = mean(n_carros, na.rm = TRUE),
-  n_gel    = mean(n_geladeira, na.rm = TRUE),
-  n_cel    = mean(n_celular, na.rm = TRUE),
-  pc       = mean(pc, na.rm = TRUE),
-  internet = mean(internet, na.rm = TRUE),
-  renda1   = mean(renda1, na.rm = TRUE),
-  renda110 = mean(renda_1_10, na.rm = TRUE),
-  renda10  = mean(renda_10, na.rm = TRUE),
-  gdppc    = mean(gdppc, na.rm = TRUE),
-  fem      = mean(fem, na.rm = TRUE),
-  idade    = mean(id18, na.rm = TRUE),
-  ppi      = mean(ppi, na.rm = TRUE),
-  tempd1   = mean(temp_d1, na.rm = TRUE),
-  tempd2   = mean(temp_d2, na.rm = TRUE),
-  umidd2   = mean(umid_d2, na.rm = TRUE),
-  umidd1   = mean(umid_d1, na.rm = TRUE),
-  h13 = first(h13),
-  h12 = first(h12),
-  h11 = first(h11),
-  obs = .N
-), by = .(mun_res, ano, dist_hv_res, seg_res, lat_res, lon_res)] %>%
-  filter(as.numeric(ano) %in% c(2018, 2019)) %>%
-  arrange(mun_res, ano) %>%
-  group_by(mun_res) %>%
-  filter(n_distinct(ano) == 2) %>%
-  ungroup()
-
-
-for (v in vars_diff) {
-  
-  if (!v %in% names(base_p)) {
-    warning(paste("Variável não encontrada:", v))
-    next
-  }
-  
-  v1 <- paste0("v1_", v)
-  v2 <- paste0("v2_", v)
-  dv <- paste0("d", v)
-  
-  base_p[[v1]] <- ifelse(base_p$ano == 2018, base_p[[v]], NA_real_)
-  
-  base_p[[v2]] <- ave(
-    base_p[[v1]], 
-    base_p$mun_res, 
-    FUN = function(x) {
-      if (all(is.na(x))) NA_real_ else max(x, na.rm = TRUE)
-    }
-  )
-  
-  base_p[[dv]] <- base_p[[v]] - base_p[[v2]]
-  
-  base_p[[dv]][!is.finite(base_p[[dv]])] <- NA
-}
-
-temp_cols <- grep("^(v1_|v2_)", names(base_p), value = TRUE)
-base_p <- base_p %>% select(-all_of(temp_cols)) %>% 
-  mutate(across(everything(), ~ replace(.x, is.infinite(.x), NA))) %>%  #Turning INF to NA
-  rename(d.media = dmedia)
 
 
 # ---------------------------------------------------------------------------- #
@@ -8378,75 +8057,7 @@ base_et <- base_et %>% select(-all_of(temp_cols)) %>%
   mutate(across(everything(), ~ replace(.x, is.infinite(.x), NA))) %>%  #Turning INF to NA
   rename(d.media = dmedia)
 
-# ---------------------------------------------------------------------------- #
-# Mun
-# ---------------------------------------------------------------------------- #
-base_mun <- base[dep_adm == 3, .(
-  media    = mean(media, na.rm = TRUE),
-  escm     = mean(escm, na.rm = TRUE),
-  escp     = mean(escp, na.rm = TRUE),
-  pessoa   = mean(pessoas_dom, na.rm = TRUE),
-  empr_dom = mean(empr_dom, na.rm = TRUE),
-  n_ban    = mean(n_banheiro, na.rm = TRUE),
-  n_qua    = mean(n_quartos, na.rm = TRUE),
-  n_car    = mean(n_carros, na.rm = TRUE),
-  n_gel    = mean(n_geladeira, na.rm = TRUE),
-  n_cel    = mean(n_celular, na.rm = TRUE),
-  pc       = mean(pc, na.rm = TRUE),
-  internet = mean(internet, na.rm = TRUE),
-  renda1   = mean(renda1, na.rm = TRUE),
-  renda110 = mean(renda_1_10, na.rm = TRUE),
-  renda10  = mean(renda_10, na.rm = TRUE),
-  gdppc    = mean(gdppc, na.rm = TRUE),
-  fem      = mean(fem, na.rm = TRUE),
-  idade    = mean(id18, na.rm = TRUE),
-  ppi      = mean(ppi, na.rm = TRUE),
-  tempd1   = mean(temp_d1, na.rm = TRUE),
-  tempd2   = mean(temp_d2, na.rm = TRUE),
-  umidd2   = mean(umid_d2, na.rm = TRUE),
-  umidd1   = mean(umid_d1, na.rm = TRUE),
-  h13 = first(h13),
-  h12 = first(h12),
-  h11 = first(h11),
-  obs = .N
-), by = .(mun_res, ano, dist_hv_res, seg_res, lat_res, lon_res)] %>%
-  filter(as.numeric(ano) %in% c(2018, 2019)) %>%
-  arrange(mun_res, ano) %>%
-  group_by(mun_res) %>%
-  filter(n_distinct(ano) == 2) %>%
-  ungroup()
 
-
-for (v in vars_diff) {
-  
-  if (!v %in% names(base_mun)) {
-    warning(paste("Variável não encontrada:", v))
-    next
-  }
-  
-  v1 <- paste0("v1_", v)
-  v2 <- paste0("v2_", v)
-  dv <- paste0("d", v)
-  
-  base_mun[[v1]] <- ifelse(base_mun$ano == 2018, base_mun[[v]], NA_real_)
-  
-  base_mun[[v2]] <- ave(
-    base_mun[[v1]], 
-    base_mun$mun_res, 
-    FUN = function(x) {
-      if (all(is.na(x))) NA_real_ else max(x, na.rm = TRUE)
-    }
-  )
-  
-  base_mun[[dv]] <- base_mun[[v]] - base_mun[[v2]]
-  
-  base_mun[[dv]][!is.finite(base_mun[[dv]])] <- NA
-}
-
-temp_cols <- grep("^(v1_|v2_)", names(base_mun), value = TRUE)
-base_mun <- base_mun %>% select(-all_of(temp_cols)) %>% 
-  mutate(across(everything(), ~ replace(.x, is.infinite(.x), NA))) %>%  #Turning INF to NA
-  rename(d.media = dmedia)
 
 # ---------------------------------------------------------------------------- #
 ###16.1.1 Regression -----
@@ -8456,55 +8067,6 @@ base_mun <- base_mun %>% select(-all_of(temp_cols)) %>%
 ef <- dummy_cols(base_t$seg_res[base_t$ano == 2018])
 ef <- ef %>% select(-1,-2)
 
-# ---------------------------------------------------------------------------- #
-#### 16.1.1.1 All Graduates ----
-# ---------------------------------------------------------------------------- #
-list[[as.character(paste0(2019,"-",2018,"C|TC"))]] <- rdrobust(
-  y = base_t$d.media[base_t$ano == 2019],
-  x = base_t$dist_hv_res[base_t$ano == 2018],
-  c = 0,
-  cluster = base_t$seg_res[base_t$ano == 2018],
-  weights = base_t$obs[base_t$ano == 2018],
-  vce = "hc0",
-  covs = cbind(
-    ef,
-    base_t$lat_res[base_t$ano == 2018],
-    base_t$lon_res[base_t$ano == 2018],
-    
-    #Weather
-    base_t$dtempd1[base_t$ano == 2019], #Temperature
-    base_t$dumidd1[base_t$ano == 2019], #Humidity d1
-    base_t$dumidd2[base_t$ano == 2019], #Humidty d2
-    base_t$dtempd2[base_t$ano == 2019], #temp2
-    
-    #House
-    base_t$dn_ban[base_t$ano == 2019], #bathrooms
-    base_t$dpessoa[base_t$ano == 2019], #people in household
-    base_t$dn_qua[base_t$ano == 2019], #houses
-    base_t$dn_car[base_t$ano == 2019], #cars
-    base_t$dn_gel[base_t$ano == 2019], # refrigerator
-    base_t$dn_cel[base_t$ano == 2019], # cellphone
-    base_t$dpc[base_t$ano == 2019],    #pc
-    base_t$dinternet[base_t$ano == 2019], #internet
-    base_t$dempr_dom[base_t$ano == 2019], #Housekeeping
-    
-    #remaining
-    base_t$descm[base_t$ano == 2019], #mother educ
-    base_t$dfem[base_t$ano == 2019], #Female
-    base_t$dppi[base_t$ano == 2019], #PPI
-    base_t$didade[base_t$ano == 2019], #Age
-    base_t$descp[base_t$ano == 2019], #father educ
-    base_t$drenda1[base_t$ano == 2019], #wage < 1MW
-    base_t$drenda110[base_t$ano == 2019], #wage 1MW - 10MW
-    base_t$drenda10[base_t$ano == 2019], #wage > 10MW
-    base_t$dgdppc[base_t$ano == 2019], #gdppc
-    
-    #Timezone
-    base_t$h13[base_t$ano == 2019],
-    base_t$h12[base_t$ano == 2019],
-    base_t$h11[base_t$ano == 2019]
-  )
-)
 
 # ---------------------------------------------------------------------------- #
 #### 16.1.1.2 Public School ----
@@ -8554,72 +8116,10 @@ list[[as.character(paste0(2019,"-",2018,"C|TCPub"))]] <- rdrobust(
     base_res$drenda1[base_res$ano == 2019], #wage < 1MW
     base_res$drenda110[base_res$ano == 2019], #wage 1MW - 10MW
     base_res$drenda10[base_res$ano == 2019], #wage > 10MW
-    base_res$dgdppc[base_res$ano == 2019], #gdppc
-    
-    #Timezone
-    base_res$h13[base_res$ano == 2019],
-    base_res$h12[base_res$ano == 2019],
-    base_res$h11[base_res$ano == 2019]
+    base_res$dgdppc[base_res$ano == 2019] #gdppc
   )
   )
 
-# ---------------------------------------------------------------------------- #
-#### 16.1.1.3 Private School ----
-# ---------------------------------------------------------------------------- #
-
-
-
-ef <- dummy_cols(base_p$seg_res[base_p$ano == 2018])
-ef <- ef %>% select(-1,-2)
-
-
-
-list[[as.character(paste0(2019,"-",2018,"C|Priv"))]] <- rdrobust(
-  y = base_p$d.media[base_p$ano == 2019],
-  x = base_p$dist_hv_res[base_p$ano == 2018],
-  c = 0,
-  cluster = base_p$seg_res[base_p$ano == 2018],
-  weights = base_p$obs[base_p$ano == 2018],
-  vce = "hc0",
-  covs = cbind(
-    ef,
-    base_p$lat_res[base_p$ano == 2018],
-    base_p$lon_res[base_p$ano == 2018],
-    
-    #Weather
-    base_p$dtempd1[base_p$ano == 2019], #Temperature
-    base_p$dumidd1[base_p$ano == 2019], #Humidity d1
-    base_p$dumidd2[base_p$ano == 2019], #Humidty d2
-    base_p$dtempd2[base_p$ano == 2019], #temp2
-    
-    #House
-    base_p$dn_ban[base_p$ano == 2019], #bathrooms
-    base_p$dpessoa[base_p$ano == 2019], #people in household
-    base_p$dn_qua[base_p$ano == 2019], #houses
-    base_p$dn_car[base_p$ano == 2019], #cars
-    base_p$dn_gel[base_p$ano == 2019], # refrigerator
-    base_p$dn_cel[base_p$ano == 2019], # cellphone
-    base_p$dpc[base_p$ano == 2019],    #pc
-    base_p$dinternet[base_p$ano == 2019], #internet
-    base_p$dempr_dom[base_p$ano == 2019], #Housekeeping
-    
-    #remaining
-    base_p$descm[base_p$ano == 2019], #mother educ
-    base_p$dfem[base_p$ano == 2019], #Female
-    base_p$dppi[base_p$ano == 2019], #PPI
-    base_p$didade[base_p$ano == 2019], #Age
-    base_p$descp[base_p$ano == 2019], #father educ
-    base_p$drenda1[base_p$ano == 2019], #wage < 1MW
-    base_p$drenda110[base_p$ano == 2019], #wage 1MW - 10MW
-    base_p$drenda10[base_p$ano == 2019], #wage > 10MW
-    base_p$dgdppc[base_p$ano == 2019], #gdppc
-    
-    #Timezone
-    base_p$h13[base_p$ano == 2019],
-    base_p$h12[base_p$ano == 2019],
-    base_p$h11[base_p$ano == 2019]
-  )
-)
 
 # ---------------------------------------------------------------------------- #
 #### 16.1.1.4 Federal Public School ----
@@ -8667,12 +8167,8 @@ list[[as.character(paste0(2019,"-",2018,"C|PubSF"))]] <- rdrobust(
     base_psf$drenda1[base_psf$ano == 2019], #wage < 1MW
     base_psf$drenda110[base_psf$ano == 2019], #wage 1MW - 10MW
     base_psf$drenda10[base_psf$ano == 2019], #wage > 10MW
-    base_psf$dgdppc[base_psf$ano == 2019], #gdppc
-    
-    #Timezone
-    base_psf$h13[base_psf$ano == 2019],
-    base_psf$h12[base_psf$ano == 2019],
-    base_psf$h11[base_psf$ano == 2019]
+    base_psf$dgdppc[base_psf$ano == 2019] #gdppc
+
   )
 )
 
@@ -8723,12 +8219,7 @@ list[[as.character(paste0(2019,"-",2018,"C|PubEsd"))]] <- rdrobust(
     base_et$drenda1[base_et$ano == 2019], #wage < 1MW
     base_et$drenda110[base_et$ano == 2019], #wage 1MW - 10MW
     base_et$drenda10[base_et$ano == 2019], #wage > 10MW
-    base_et$dgdppc[base_et$ano == 2019], #gdppc
-    
-    #Timezone
-    base_et$h13[base_et$ano == 2019],
-    base_et$h12[base_et$ano == 2019],
-    base_et$h11[base_et$ano == 2019]
+    base_et$dgdppc[base_et$ano == 2019] #gdppc
   )
 )
 
@@ -8778,70 +8269,11 @@ list[[as.character(paste0(2019,"-",2018,"C|PubFed"))]] <- rdrobust(
     base_fed$drenda1[base_fed$ano == 2019], #wage < 1MW
     base_fed$drenda110[base_fed$ano == 2019], #wage 1MW - 10MW
     base_fed$drenda10[base_fed$ano == 2019], #wage > 10MW
-    base_fed$dgdppc[base_fed$ano == 2019], #gdppc
-    
-    #Timezone
-    base_fed$h13[base_fed$ano == 2019],
-    base_fed$h12[base_fed$ano == 2019],
-    base_fed$h11[base_fed$ano == 2019]
+    base_fed$dgdppc[base_fed$ano == 2019] #gdppc
+
   )
 )
 
-# ---------------------------------------------------------------------------- #
-#### 16.1.1.7 Municipal School ----
-# ---------------------------------------------------------------------------- #
-
-ef <- dummy_cols(base_mun$seg_res[base_mun$ano == 2018])
-ef <- ef %>% select(-1,-2)
-
-
-
-list[[as.character(paste0(2019,"-",2018,"C|PubMun"))]] <- rdrobust(
-  y = base_mun$d.media[base_mun$ano == 2019],
-  x = base_mun$dist_hv_res[base_mun$ano == 2018],
-  c = 0,
-  cluster = base_mun$seg_res[base_mun$ano == 2018],
-  weights = base_mun$obs[base_mun$ano == 2018],
-  vce = "hc0",
-  covs = cbind(
-    ef,
-    base_mun$lat_res[base_mun$ano == 2018],
-    base_mun$lon_res[base_mun$ano == 2018],
-    
-    #Weather
-    base_mun$dtempd1[base_mun$ano == 2019], #Temperature
-    base_mun$dumidd1[base_mun$ano == 2019], #Humidity d1
-    base_mun$dumidd2[base_mun$ano == 2019], #Humidty d2
-    base_mun$dtempd2[base_mun$ano == 2019], #temp2
-    
-    #House
-    base_mun$dn_ban[base_mun$ano == 2019], #bathrooms
-    base_mun$dpessoa[base_mun$ano == 2019], #people in household
-    base_mun$dn_qua[base_mun$ano == 2019], #houses
-    base_mun$dn_car[base_mun$ano == 2019], #cars
-    base_mun$dn_gel[base_mun$ano == 2019], # refrigerator
-    base_mun$dn_cel[base_mun$ano == 2019], # cellphone
-    base_mun$dpc[base_mun$ano == 2019],    #pc
-    base_mun$dinternet[base_mun$ano == 2019], #internet
-    base_mun$dempr_dom[base_mun$ano == 2019], #Housekeeping
-    
-    #remaining
-    base_mun$descm[base_mun$ano == 2019], #mother educ
-    base_mun$dfem[base_mun$ano == 2019], #Female
-    base_mun$dppi[base_mun$ano == 2019], #PPI
-    base_mun$didade[base_mun$ano == 2019], #Age
-    base_mun$descp[base_mun$ano == 2019], #father educ
-    base_mun$drenda1[base_mun$ano == 2019], #wage < 1MW
-    base_mun$drenda110[base_mun$ano == 2019], #wage 1MW - 10MW
-    base_mun$drenda10[base_mun$ano == 2019], #wage > 10MW
-    base_mun$dgdppc[base_mun$ano == 2019], #gdppc
-    
-    #Timezone
-    base_mun$h13[base_mun$ano == 2019],
-    base_mun$h12[base_mun$ano == 2019],
-    base_mun$h11[base_mun$ano == 2019]
-  )
-)
 
 # ---------------------------------------------------------------------------- #
 ### 16.2 Result Table -----
