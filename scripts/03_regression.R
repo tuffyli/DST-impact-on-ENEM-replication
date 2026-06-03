@@ -2,7 +2,7 @@
 # Regressions
 # Main estimations and Robustness
 # Last edited by: Tuffy Licciardi Issa
-# Date: 02/06/2026
+# Date: 03/06/2026
 # ---------------------------------------------------------------------------- #
 
 # ---------------------------------------------------------------------------- #
@@ -1389,10 +1389,10 @@ result <- data.frame(
     fmt_bw(t10$bw[2])
   ),
   `(2)` = c(
-    fmt_est(t10$coef[5], t10$pv[5]),
-    fmt_se(t10$se[5]),
-    fmt_npair(t10$n_left[5], t10$n_rght[5]),
-    fmt_bw(t10$bw[5])
+    fmt_est(t10$coef[4], t10$pv[4]),
+    fmt_se(t10$se[4]),
+    fmt_npair(t10$n_left[4], t10$n_rght[4]),
+    fmt_bw(t10$bw[4])
   ),
   check.names = FALSE,
   stringsAsFactors = FALSE
@@ -1791,49 +1791,37 @@ result <- data.frame(
     "2018 - 2017",
     " ",
     "N = N$_L$, N$_R$",
-    "BW",
-    "Time Zones",
-    "All Controls"
+    "BW"
   ),
   `(1)` = c(
     fmt_est(t10$coef[1], t10$pv[1]),
     fmt_se(t10$se[1]),
     fmt_npair(t10$n_left[1], t10$n_rght[1]),
-    fmt_bw(t10$bw[1]),
-    "No",
-    "No"
+    fmt_bw(t10$bw[1])
   ),
   `(2)` = c(
     fmt_est(t10$coef[2], t10$pv[2]),
     fmt_se(t10$se[2]),
     fmt_npair(t10$n_left[2], t10$n_rght[2]),
-    fmt_bw(t10$bw[2]),
-    "Yes",
-    "No"
+    fmt_bw(t10$bw[2])
   ),
   `(3)` = c(
     fmt_est(t10$coef[3], t10$pv[3]),
     fmt_se(t10$se[3]),
     fmt_npair(t10$n_left[3], t10$n_rght[3]),
-    fmt_bw(t10$bw[3]),
-    "Yes",
-    "Yes"
+    fmt_bw(t10$bw[3])
   ),
   `(4)` = c(
     fmt_est(t10$coef[4], t10$pv[4]),
     fmt_se(t10$se[4]),
     fmt_npair(t10$n_left[4], t10$n_rght[4]),
-    fmt_bw(t10$bw[4]),
-    "Yes",
-    "No"
+    fmt_bw(t10$bw[4])
   ),
   `(5)` = c(
     fmt_est(t10$coef[5], t10$pv[5]),
     fmt_se(t10$se[5]),
     fmt_npair(t10$n_left[5], t10$n_rght[5]),
-    fmt_bw(t10$bw[5]),
-    "Yes",
-    "Yes"
+    fmt_bw(t10$bw[5])
   ),
   check.names = FALSE,
   stringsAsFactors = FALSE
@@ -4338,7 +4326,7 @@ rm(latex_table, result, dias, d_list, p_list, names, base_abs, educ, temp,
 # ---------------------------------------------------------------------------- #
 
 vars_diff <- c(
-  "media",
+  "media", "dia_1", "dia_2",
   "escm", "escp", "pessoa", "empr_dom",
   "n_ban", "n_qua", "n_car", "n_gel", "n_cel",
   "pc", "internet", "renda1", "renda110", "renda10",
@@ -7095,7 +7083,6 @@ for (i in c("5","9","3")) {
     covs = cbind(ef,
                  latv,
                  lonv,
-                 time,
                  all)
   )
   
@@ -7326,27 +7313,6 @@ for(ano in 2013:2019) { # Loop over the yearly databases
       
       aux_res = mun_res %/% 100000,
       
-      h13 = ifelse(
-          aux_res %in% c(52, 53, 31, 32, 33, 35, 42, 41, 43,
-                         #"GO", "DF", "MG", "ES", "RJ", "SP", "SC", "PR", "RS",
-                         29, 28, 27, 26, 25, 24, 23, 22, 21, 17, 15, 16 ),
-        1, 0
-      ),
-      
-      h12 = ifelse(
-        aux_res %in% c(51, 50, 11, 14) | aux_res == 13 & !mun_res %in%
-          c(1300201, 1300607, 1300706, 1301407, 1301506, 1301654, 1301803, 1301951,
-            1302306, 1302405, 1303502, 1303908, 1304062),
-        1, 0
-        ),
-      
-      h11 = ifelse(
-          aux_res == 12 | mun_res %in% c(1300201, 1300607, 1300706, 1301407, 1301506,
-                                         1301654, 1301803, 1301951, 1302306, 1302405,
-                                         1303502, 1303908, 1304062),
-          1, 0
-          ),
-      
       
       new_dist = dist_hv_border/100000
       )  %>% 
@@ -7396,9 +7362,6 @@ for(ano in 2013:2019) { # Loop over the yearly databases
     tempd2   = mean(temp_d2, na.rm = TRUE),
     umidd2   = mean(umid_d2, na.rm = TRUE),
     umidd1   = mean(umid_d1, na.rm = TRUE),
-    h13 = first(h13),
-    h12 = first(h12),
-    h11 = first(h11),
     obs = .N
   ), by = .(mun_res,ano)] %>%
     arrange(mun_res, ano)
@@ -7542,10 +7505,7 @@ for (ano_ref in ano_list) {
       base_t$drenda110,
       base_t$drenda10,
       base_t$dgdppc,
-      base_t$dtempd2,
-      base_t$h13,
-      base_t$h12,
-      base_t$h11
+      base_t$dtempd2
     )
   )
   
@@ -7651,7 +7611,7 @@ ggsave(plot = p, filename = file.path(controls_figures_path, "fig_year_differenc
 ggsave(plot = p, filename = file.path(controls_pdf_path, "fig_year_differences_final_v01.eps"), device = "eps", height = 7, width = 10)
 # Original output: anos_dif_final.eps
 
-
+rm(p)
 # ---------------------------------------------------------------------------- #
 # 16. Filter + Desc ----
 # Compares filtered samples and applicant groups to document how sample construction changes results.
@@ -7956,9 +7916,7 @@ base_et <- base_et %>% select(-all_of(temp_cols)) %>%
 ###16.1.1 Regression -----
 # ---------------------------------------------------------------------------- #
 
-
-ef <- dummy_cols(base_t$seg_res[base_t$ano == 2018])
-ef <- ef %>% select(-1,-2)
+list <- list()
 
 
 # ---------------------------------------------------------------------------- #

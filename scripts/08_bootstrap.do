@@ -58,7 +58,6 @@ reghdfe y ///
     dn_ban dpessoa dn_qua dn_car dn_gel dn_cel dpc dinternet dempr_dom ///
     descm dfem dppi didade descp ///
     drenda1 drenda110 drenda10 dgdppc ///
-    h13 h12 ///
     seg2 seg3 seg4 seg5 seg6 seg7 ///
     [aw = w_final], ///
     vce(cluster seg)
@@ -88,7 +87,6 @@ reg y ///
     dn_ban dpessoa dn_qua dn_car dn_gel dn_cel dpc dinternet dempr_dom ///
     descm dfem dppi didade descp ///
     drenda1 drenda110 drenda10 dgdppc ///
-    h13 h12 ///
     seg2 seg3 seg4 seg5 seg6 seg7 ///
     [aw = w], ///
     vce(cluster seg)
@@ -99,9 +97,9 @@ boottest treat = 0, cluster(seg) weight(webb) rep(9999) seed(12345)
 
 * Saving the result
 file open tex using "$OUTPUTS/scores/rd_values.tex", write replace
-file write tex "Treatment (RD effect) & 7.13 & 6.22 \\\\" _n
-file write tex "                      & (2.36) & (2.64) \\\\" _n
-file write tex "                      &        & [0.040] \\\\" _n
+file write tex "Treatment (RD effect) & 7.14 & 6.23 \\\\" _n
+file write tex "                      & (2.35) & (2.68) \\\\" _n
+file write tex "                      &        & [0.039] \\\\" _n
 file close tex
 
 * ---------------------------------------------------------------------------- *
