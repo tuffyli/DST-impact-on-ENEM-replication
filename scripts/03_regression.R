@@ -2,7 +2,7 @@
 # Regressions
 # Main estimations and Robustness
 # Last edited by: Tuffy Licciardi Issa
-# Date: 03/06/2026
+# Date: 23/06/2026
 # ---------------------------------------------------------------------------- #
 
 # ---------------------------------------------------------------------------- #
@@ -192,6 +192,7 @@ add_inpe_prova_1819 <- function(base, inpe_path = inpe_mun_path) {
 # ---------------------------------------------------------------------------- #
 
 base <- readRDS(file.path(processed_path, "base_final.RDS")) 
+
 # ---------------------------------------------------------------------------- #
 ## 1.1 Aggregated base ----
 # Aggregates the final database to municipality-year level using residence municipality, then creates first differences against the baseline year.
@@ -327,6 +328,7 @@ list[[as.character(paste0(2019,"-",2018,"|dem+temp"))]] <- rdrobust(
     efr,
     base_res$lat_res[base_res$ano == 2018],
     base_res$lon_res[base_res$ano == 2018],
+
     #Dists
     base_res$dtempd1[base_res$ano == 2019], #Temperature
     base_res$dumidd1[base_res$ano == 2019], #Humidity d1
@@ -361,6 +363,7 @@ list[[as.character(paste0(2019,"-",2018,"|fuso+temp+house"))]] <- rdrobust(
     efr,
     base_res$lat_res[base_res$ano == 2018],
     base_res$lon_res[base_res$ano == 2018],
+
     #Weather
     base_res$dtempd1[base_res$ano == 2019], #Temperature
     base_res$dumidd1[base_res$ano == 2019], #Humidity d1
@@ -405,7 +408,7 @@ list[[as.character(paste0(2019,"-",2018,"|all"))]] <- rdrobust(
     efr,
     base_res$lat_res[base_res$ano == 2018],
     base_res$lon_res[base_res$ano == 2018],
-    
+
     #Weather
     base_res$dtempd1[base_res$ano == 2019], #Temperature
     base_res$dumidd1[base_res$ano == 2019], #Humidity d1
@@ -532,7 +535,7 @@ list[[as.character(paste0(2019,"-",2018,"|all+p2"))]] <- rdrobust(
     efr,
     base_res$lat_res[base_res$ano == 2018],
     base_res$lon_res[base_res$ano == 2018],
-    
+
     #Weather
     base_res$dtempd1[base_res$ano == 2019], #Temperature
     base_res$dumidd1[base_res$ano == 2019], #Humidity d1
@@ -1573,7 +1576,7 @@ base_aux2 <- base_res %>%
 
 
 # ---------------------------------------------------------------------------- #
-### 1.4.1 Main Regression ----
+### 1.3.1 Main Regression ----
 # Runs the main 2018-2017 placebo RD models.
 # ---------------------------------------------------------------------------- #
 
@@ -1599,7 +1602,7 @@ list[[as.character(paste0(2018,"-",2017,"|fuso"))]] <- rdrobust(
 
 
 # ---------------------------------------------------------------------------- #
-### 1.4.2 Temperature ----
+### 1.3.2 Temperature ----
 # ---------------------------------------------------------------------------- #
 
 list[[as.character(paste0(2018,"-",2017,"|dem"))]] <- rdrobust(
@@ -1629,7 +1632,7 @@ list[[as.character(paste0(2018,"-",2017,"|dem"))]] <- rdrobust(
 )
 
 # ---------------------------------------------------------------------------- #
-### 1.4.3 Timezone + Temp + Socio ----
+### 1.3.3 Timezone + Temp + Socio ----
 # ---------------------------------------------------------------------------- #
 
 list[[as.character(paste0(2018,"-",2017,"|fuso+temp+house"))]] <- rdrobust(
@@ -1670,7 +1673,7 @@ list[[as.character(paste0(2018,"-",2017,"|fuso+temp+house"))]] <- rdrobust(
 )
 
 # ---------------------------------------------------------------------------- #
-### 1.1.4 All ----
+### 1.3.4 All ----
 # ---------------------------------------------------------------------------- #
 
 list[[as.character(paste0(2018,"-",2017,"|all"))]] <- rdrobust(
@@ -1718,7 +1721,7 @@ list[[as.character(paste0(2018,"-",2017,"|all"))]] <- rdrobust(
 )
 
 # ---------------------------------------------------------------------------- #
-### 1.4.5 Pol + All ----
+### 1.3.5 Pol + All ----
 # ---------------------------------------------------------------------------- #
 
 list[[as.character(paste0(2018,"-",2017,"|pol+all"))]] <- rdrobust(
@@ -1766,7 +1769,7 @@ list[[as.character(paste0(2018,"-",2017,"|pol+all"))]] <- rdrobust(
 )
 
 # ---------------------------------------------------------------------------- #
-### 1.4.6 Table  ----
+### 1.3.6 Table  ----
 # ---------------------------------------------------------------------------- #
 
 t10 <- data.frame(
@@ -1845,6 +1848,420 @@ writeLines(latex_table, file.path(controls_output_path, "tbl_2018_2017_main_plac
 # Original output: DIFF_Principal_1817.tex
 
 rm(latex_table, t10, result, list, vars_diff, dv, v, temp_cols, v1, v2)
+
+# ---------------------------------------------------------------------------- #
+## 1.4 Main (with suntime) ----
+# Now we wil add the variable of distance of sunrise to ENEM in the controls of
+# the main results table
+# ---------------------------------------------------------------------------- #
+### 1.4.1 Data ----
+# ---------------------------------------------------------------------------- #
+
+vars_diff <- c(
+  "media",
+  "escm", "escp", "pessoa", "empr_dom",
+  "n_ban", "n_qua", "n_car", "n_gel", "n_cel",
+  "pc", "internet", "renda1", "renda110", "renda10",
+  "gdppc",
+  "fem", "idade", "ppi",
+  "tempd1", "tempd2", "umidd2", "umidd1",
+  "suntime", "suntmd1", "suntmd2"
+)
+
+base_res2 <- base[priv0 == 1, .(
+  media    = mean(media, na.rm = TRUE),
+  escm     = mean(escm, na.rm = TRUE),
+  escp     = mean(escp, na.rm = TRUE),
+  pessoa   = mean(pessoas_dom, na.rm = TRUE),
+  empr_dom = mean(empr_dom, na.rm = TRUE),
+  n_ban    = mean(n_banheiro, na.rm = TRUE),
+  n_qua    = mean(n_quartos, na.rm = TRUE),
+  n_car    = mean(n_carros, na.rm = TRUE),
+  n_gel    = mean(n_geladeira, na.rm = TRUE),
+  n_cel    = mean(n_celular, na.rm = TRUE),
+  pc       = mean(pc, na.rm = TRUE),
+  internet = mean(internet, na.rm = TRUE),
+  renda1   = mean(renda1, na.rm = TRUE),
+  renda110 = mean(renda_1_10, na.rm = TRUE),
+  renda10  = mean(renda_10, na.rm = TRUE),
+  gdppc    = mean(gdppc, na.rm = TRUE),
+  fem      = mean(fem, na.rm = TRUE),
+  idade    = mean(id18, na.rm = TRUE),
+  ppi      = mean(ppi, na.rm = TRUE),
+  tempd1   = mean(temp_d1, na.rm = TRUE),
+  tempd2   = mean(temp_d2, na.rm = TRUE),
+  umidd2   = mean(umid_d2, na.rm = TRUE),
+  umidd1   = mean(umid_d1, na.rm = TRUE),
+  suntime  = mean(time_to_enem_both, na.rm = TRUE),
+  suntmd1  = mean(time_to_enem_day1, na.rm = TRUE),
+  suntmd2  = mean(time_to_enem_day2, na.rm = TRUE), 
+  h13 = first(h13),
+  h12 = first(h12),
+  h11 = first(h11),
+  obs = .N
+), by = .(mun_res, ano, dist_hv_res, seg_res, lat_res, lon_res)] %>%
+  filter(as.numeric(ano) %in% c(2018, 2019)) %>%
+  arrange(mun_res, ano) %>%
+  group_by(mun_res) %>%
+  filter(n_distinct(ano) == 2) %>%
+  ungroup()
+
+
+for (v in vars_diff) {
+  
+  if (!v %in% names(base_res2)) {
+    warning(paste("Variável não encontrada:", v))
+    next
+  }
+  
+  v1 <- paste0("v1_", v)
+  v2 <- paste0("v2_", v)
+  dv <- paste0("d", v)
+  
+  base_res2[[v1]] <- ifelse(base_res2$ano == 2018, base_res2[[v]], NA_real_)
+  
+  base_res2[[v2]] <- ave(
+    base_res2[[v1]], 
+    base_res2$mun_res, 
+    FUN = function(x) {
+      if (all(is.na(x))) NA_real_ else max(x, na.rm = TRUE)
+    }
+  )
+  
+  base_res2[[dv]] <- base_res2[[v]] - base_res2[[v2]]
+  
+  base_res2[[dv]][!is.finite(base_res2[[dv]])] <- NA
+}
+
+temp_cols <- grep("^(v1_|v2_)", names(base_res2), value = TRUE)
+base_res2 <- base_res2 %>% select(-all_of(temp_cols)) %>% 
+  mutate(across(everything(), ~ replace(.x, is.infinite(.x), NA))) %>%  #Turning INF to NA
+  rename(d.media = dmedia)
+
+# ----- List ---- #
+
+list <- list()
+
+efr <- dummy_cols(base_res2$seg_res[base_res2$ano == 2017])
+efr <- efr %>% select(-1,-2)
+
+# ---------------------------------------------------------------------------- #
+### 1.4.2 Regression ----
+# ---------------------------------------------------------------------------- #
+#### 1.4.2.1 Main (Timezone) ----
+# Estimates the baseline RD using timezone controls around the HV border.
+# ---------------------------------------------------------------------------- #
+
+list[[as.character(paste0(2019,"-",2018,"|fuso"))]] <- rdrobust(
+  y = base_res2$d.media[base_res2$ano == 2019],
+  x = base_res2$dist_hv_res[base_res2$ano == 2018],
+  c = 0,
+  cluster = base_res2$seg_res[base_res2$ano == 2018],
+  weights = base_res2$obs[base_res2$ano == 2018],
+  vce = "hc0",
+  covs = cbind(
+    efr,
+    base_res2$lat_res[base_res2$ano == 2018],
+    base_res2$lon_res[base_res2$ano == 2018],
+    base_res2$dsuntime[base_res2$ano == 2019] #Suntime
+  )
+)
+
+# ---------------------------------------------------------------------------- #
+#### 1.4.2.2 Temperature ----
+# Adds weather and demographic controls to the RD specification.
+# ---------------------------------------------------------------------------- #
+
+list[[as.character(paste0(2019,"-",2018,"|dem+temp"))]] <- rdrobust(
+  y = base_res2$d.media[base_res2$ano == 2019],
+  x = base_res2$dist_hv_res[base_res2$ano == 2018],
+  c = 0,
+  p = 1,
+  cluster = base_res2$seg_res[base_res2$ano == 2018],
+  weights = base_res2$obs[base_res2$ano == 2018],
+  vce = "hc0",
+  covs = cbind(
+    efr,
+    base_res2$lat_res[base_res2$ano == 2018],
+    base_res2$lon_res[base_res2$ano == 2018],
+    base_res2$dsuntime[base_res2$ano == 2019], #Suntime
+    
+    #Dists
+    base_res2$dtempd1[base_res2$ano == 2019], #Temperature
+    base_res2$dumidd1[base_res2$ano == 2019], #Humidity d1
+    base_res2$dumidd2[base_res2$ano == 2019], #Humidty d2
+    base_res2$dtempd2[base_res2$ano == 2019], #temp2
+    
+    #Parents and Individuals Characteristics
+    base_res2$descm[base_res2$ano == 2019], #mother educ
+    base_res2$dfem[base_res2$ano == 2019], #Female
+    base_res2$dppi[base_res2$ano == 2019], #PPI
+    base_res2$didade[base_res2$ano == 2019], #Age
+    base_res2$descp[base_res2$ano == 2019] #father educ
+  )
+)
+
+
+
+# ---------------------------------------------------------------------------- #
+#### 1.4.2.3 Timezone + Temp + Socio  ----
+# Expands the control set to include timezone, weather, student, parent, and household characteristics.
+# ---------------------------------------------------------------------------- #
+
+list[[as.character(paste0(2019,"-",2018,"|fuso+temp+house"))]] <- rdrobust(
+  y = base_res2$d.media[base_res2$ano == 2019],
+  x = base_res2$dist_hv_res[base_res2$ano == 2018],
+  c = 0,
+  p = 1, 
+  cluster = base_res2$seg_res[base_res2$ano == 2018],
+  weights = base_res2$obs[base_res2$ano == 2018],
+  vce = "hc0",
+  covs = cbind(
+    efr,
+    base_res2$lat_res[base_res2$ano == 2018],
+    base_res2$lon_res[base_res2$ano == 2018],
+    base_res2$dsuntime[base_res2$ano == 2019], #Suntime
+    
+    #Weather
+    base_res2$dtempd1[base_res2$ano == 2019], #Temperature
+    base_res2$dumidd1[base_res2$ano == 2019], #Humidity d1
+    base_res2$dumidd2[base_res2$ano == 2019], #Humidty d2
+    base_res2$dtempd2[base_res2$ano == 2019], #temp2
+    
+    #Parents and Individuals Characteristics
+    base_res2$descm[base_res2$ano == 2019], #mother educ
+    base_res2$dfem[base_res2$ano == 2019], #Female
+    base_res2$dppi[base_res2$ano == 2019], #PPI
+    base_res2$didade[base_res2$ano == 2019], #Age
+    base_res2$descp[base_res2$ano == 2019], #father educ
+    
+    #House
+    base_res2$dn_ban[base_res2$ano == 2019], #bathrooms
+    base_res2$dpessoa[base_res2$ano == 2019], #people in household
+    base_res2$dn_qua[base_res2$ano == 2019], #houses
+    base_res2$dn_car[base_res2$ano == 2019], #cars
+    base_res2$dn_gel[base_res2$ano == 2019], # refrigerator
+    base_res2$dn_cel[base_res2$ano == 2019], # cellphone
+    base_res2$dpc[base_res2$ano == 2019],    #pc
+    base_res2$dinternet[base_res2$ano == 2019], #internet
+    base_res2$dempr_dom[base_res2$ano == 2019] #Housekeeping
+    
+  )
+)
+
+# ---------------------------------------------------------------------------- #
+#### 1.4.2.4 All ----
+# Runs the full control specification used as the main benchmark for the residence-based panel.
+# ---------------------------------------------------------------------------- #
+
+list[[as.character(paste0(2019,"-",2018,"|all"))]] <- rdrobust(
+  y = base_res2$d.media[base_res2$ano == 2019],
+  x = base_res2$dist_hv_res[base_res2$ano == 2018],
+  c = 0,
+  p = 1, 
+  cluster = base_res2$seg_res[base_res2$ano == 2018],
+  weights = base_res2$obs[base_res2$ano == 2018],
+  vce = "hc0",
+  covs = cbind(
+    efr,
+    base_res2$lat_res[base_res2$ano == 2018],
+    base_res2$lon_res[base_res2$ano == 2018],
+    base_res2$dsuntime[base_res2$ano == 2019], #Suntime
+    
+    #Weather
+    base_res2$dtempd1[base_res2$ano == 2019], #Temperature
+    base_res2$dumidd1[base_res2$ano == 2019], #Humidity d1
+    base_res2$dumidd2[base_res2$ano == 2019], #Humidty d2
+    base_res2$dtempd2[base_res2$ano == 2019], #temp2
+    
+    #House
+    base_res2$dn_ban[base_res2$ano == 2019], #bathrooms
+    base_res2$dpessoa[base_res2$ano == 2019], #people in household
+    base_res2$dn_qua[base_res2$ano == 2019], #houses
+    base_res2$dn_car[base_res2$ano == 2019], #cars
+    base_res2$dn_gel[base_res2$ano == 2019], # refrigerator
+    base_res2$dn_cel[base_res2$ano == 2019], # cellphone
+    base_res2$dpc[base_res2$ano == 2019],    #pc
+    base_res2$dinternet[base_res2$ano == 2019], #internet
+    base_res2$dempr_dom[base_res2$ano == 2019], #Housekeeping
+    
+    #remaining
+    base_res2$descm[base_res2$ano == 2019], #mother educ
+    base_res2$dfem[base_res2$ano == 2019], #Female
+    base_res2$dppi[base_res2$ano == 2019], #PPI
+    base_res2$didade[base_res2$ano == 2019], #Age
+    base_res2$descp[base_res2$ano == 2019], #father educ
+    base_res2$drenda1[base_res2$ano == 2019], #wage < 1MW
+    base_res2$drenda110[base_res2$ano == 2019], #wage 1MW - 10MW
+    base_res2$drenda10[base_res2$ano == 2019], #wage > 10MW
+    base_res2$dgdppc[base_res2$ano == 2019] #gdppc
+    
+  )
+)
+
+
+# ---------------------------------------------------------------------------- #
+#### 1.4.2.5 Pol + All ----
+# Re-estimates the full model with a higher-order polynomial in distance.
+# ---------------------------------------------------------------------------- #
+
+list[[as.character(paste0(2019,"-",2018,"|all+p2"))]] <- rdrobust(
+  y = base_res2$d.media[base_res2$ano == 2019],
+  x = base_res2$dist_hv_res[base_res2$ano == 2018],
+  c = 0,
+  p = 2, 
+  cluster = base_res2$seg_res[base_res2$ano == 2018],
+  weights = base_res2$obs[base_res2$ano == 2018],
+  vce = "hc0",
+  covs = cbind(
+    efr,
+    base_res2$lat_res[base_res2$ano == 2018],
+    base_res2$lon_res[base_res2$ano == 2018],
+    base_res2$dsuntime[base_res2$ano == 2019], #Suntime
+    
+    #Weather
+    base_res2$dtempd1[base_res2$ano == 2019], #Temperature
+    base_res2$dumidd1[base_res2$ano == 2019], #Humidity d1
+    base_res2$dumidd2[base_res2$ano == 2019], #Humidty d2
+    base_res2$dtempd2[base_res2$ano == 2019], #temp2
+    
+    #House
+    base_res2$dn_ban[base_res2$ano == 2019], #bathrooms
+    base_res2$dpessoa[base_res2$ano == 2019], #people in household
+    base_res2$dn_qua[base_res2$ano == 2019], #houses
+    base_res2$dn_car[base_res2$ano == 2019], #cars
+    base_res2$dn_gel[base_res2$ano == 2019], # refrigerator
+    base_res2$dn_cel[base_res2$ano == 2019], # cellphone
+    base_res2$dpc[base_res2$ano == 2019],    #pc
+    base_res2$dinternet[base_res2$ano == 2019], #internet
+    base_res2$dempr_dom[base_res2$ano == 2019], #Housekeeping
+    
+    #remaining
+    base_res2$descm[base_res2$ano == 2019], #mother educ
+    base_res2$dfem[base_res2$ano == 2019], #Female
+    base_res2$dppi[base_res2$ano == 2019], #PPI
+    base_res2$didade[base_res2$ano == 2019], #Age
+    base_res2$descp[base_res2$ano == 2019], #father educ
+    base_res2$drenda1[base_res2$ano == 2019], #wage < 1MW
+    base_res2$drenda110[base_res2$ano == 2019], #wage 1MW - 10MW
+    base_res2$drenda10[base_res2$ano == 2019], #wage > 10MW
+    base_res2$dgdppc[base_res2$ano == 2019] #gdppc
+    
+  )
+)
+
+
+# ---------------------------------------------------------------------------- #
+### 1.4.3 Table  ----
+# Converts the stored RD results into the main LaTeX output table.
+# ---------------------------------------------------------------------------- #
+
+t10 <- data.frame(
+  coef   = sapply(list, function(x) x$coef[3]),
+  se     = sapply(list, function(x) x$se[3]),
+  pv     = sapply(list, function(x) x$pv[3]),
+  n_left = sapply(list, function(x) x$N_h[1]),
+  n_rght = sapply(list, function(x) x$N_h[2]),
+  bw     = sapply(list, function(x) x$bws[1, 1]),
+  totr   = sapply(list, function(x) x$N[2]),
+  totl   = sapply(list, function(x) x$N[1])
+)
+print(t10)
+
+
+
+# ---------------------------------------------------------------------------- #
+# Build final AER-style table
+# ---------------------------------------------------------------------------- #
+# Converts the stored RD objects into a compact publication table with estimates,
+# standard errors, bandwidths, and control-set indicators.
+
+result <- data.frame(
+  ` ` = c(
+    "2019 - 2018",
+    " ",
+    "N = N$_L$, N$_R$",
+    "BW",
+    "Main Controls",
+    "Temperature",
+    "Sociodemographic Characteristics",
+    "All Controls"
+  ),
+  `(1)` = c(
+    fmt_est(t10$coef[1], t10$pv[1]),
+    fmt_se(t10$se[1]),
+    fmt_npair(t10$n_left[1], t10$n_rght[1]),
+    fmt_bw(t10$bw[1]),
+    "Yes",
+    "No",
+    "No",
+    "--"
+  ),
+  `(2)` = c(
+    fmt_est(t10$coef[2], t10$pv[2]),
+    fmt_se(t10$se[2]),
+    fmt_npair(t10$n_left[2], t10$n_rght[2]),
+    fmt_bw(t10$bw[2]),
+    "Yes",
+    "Yes",
+    "No",
+    "--"
+    
+  ),
+  `(3)` = c(
+    fmt_est(t10$coef[3], t10$pv[3]),
+    fmt_se(t10$se[3]),
+    fmt_npair(t10$n_left[3], t10$n_rght[3]),
+    fmt_bw(t10$bw[3]),
+    "Yes",
+    "Yes",
+    "Yes",
+    "--"
+  ),
+  `(4)` = c(
+    fmt_est(t10$coef[4], t10$pv[4]),
+    fmt_se(t10$se[4]),
+    fmt_npair(t10$n_left[4], t10$n_rght[4]),
+    fmt_bw(t10$bw[4]),
+    "--",
+    "--",
+    "--",
+    "Yes"
+  ),
+  `(5)` = c(
+    fmt_est(t10$coef[5], t10$pv[5]),
+    fmt_se(t10$se[5]),
+    fmt_npair(t10$n_left[5], t10$n_rght[5]),
+    fmt_bw(t10$bw[5]),
+    "--",
+    "--",
+    "--",
+    "Yes"
+  ),
+  check.names = FALSE,
+  stringsAsFactors = FALSE
+)
+
+# ---------------------------------------------------------------------------- #
+# Latex
+# ---------------------------------------------------------------------------- #
+# Writes the assembled table to the standardized output filename.
+
+latex_table <- knitr::kable(
+  result,
+  format = "latex",
+  booktabs = TRUE,
+  escape = F,
+  align = "lccccc",
+  linesep = "",
+)
+
+
+writeLines(latex_table, file.path(controls_output_path, "tbl_2019_2018_main_suntime_v01.tex"))
+
+
+rm(latex_table, t10, result, list, base_res2)
+# ---------------------------------------------------------------------------- #
 
 # ---------------------------------------------------------------------------- #
 # 2. GRAPHS / DATA EXPORT (Section 2) ----
