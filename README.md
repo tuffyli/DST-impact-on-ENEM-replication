@@ -313,6 +313,7 @@ The replication package was developed and tested using `R 4.5.1`.
 | `ggpattern` | 1.3.1 | Patterned ggplot figures | 
 | `scales` | 1.4.0 | Axis and scale formatting | 
 | `purrr` | 1.1.0 | Functional programming utilities |
+| `suncalc` | 0.5.1 | Sunrise time calculation |
 
 Additional supporting packages for string handling, data cleaning, and plotting are loaded automatically by `01_master.R`.
 
